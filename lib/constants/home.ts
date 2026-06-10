@@ -12,9 +12,8 @@ export const homeContent = {
       "Transform your cyber readiness from theoretical planning to measurable capability with our advanced resilience platform.",
     primaryCta: "Book a Dedicated Platform Demo",
     secondaryCta: "Contact Us",
-    /** Drop your image at public/images/hero-home.jpg (or .png) */
-    imageSrc: "/images/cyberattack.png",
-    imageAlt: "Cyber attack simulation visualization",
+    imageSrc: "/images/landing.jpeg",
+    imageAlt: "Simulasi.org cyber resilience platform landing illustration",
   },
   about: {
     title: "About Simulasi.org: The Shift to Measurable Capability",
