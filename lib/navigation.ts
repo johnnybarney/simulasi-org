@@ -45,9 +45,9 @@ export type NavItem = {
 
 export const servicePages: NavChild[] = [
   { label: "Cyber Exercise Services", href: routes.cyberExercise },
-  { label: "Live Technical Simulation", href: routes.liveSimulation },
-  { label: "OSINT & AI Intelligence", href: routes.osintAi },
-  { label: "Red Teaming", href: routes.redTeaming },
+  { label: "TECHNICAL SIMULATION EXERCISE ( TSX )", href: routes.liveSimulation },
+  { label: "RECONNAISSANCE INTELLIGENCE", href: routes.osintAi },
+  { label: "OFFENSIVE OPERATIONS ( RED TEAMING )", href: routes.redTeaming },
 ];
 
 /** Add training program links here when ready. */

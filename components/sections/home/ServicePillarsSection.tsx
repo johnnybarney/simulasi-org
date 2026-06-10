@@ -35,7 +35,12 @@ export function ServicePillarsSection() {
                       alt={item.title}
                     />
                   </div>
-                  <h3 className="mb-3 text-center font-headline text-lg font-bold text-white">{item.title}</h3>
+                  <h3 className="mb-3 text-center font-headline text-lg font-bold leading-snug text-white">
+                    <span className="block">{item.title}</span>
+                    {item.titleCode && (
+                      <span className="mt-1 block text-base text-cyan-neon">( {item.titleCode} )</span>
+                    )}
+                  </h3>
                   <p className="flex-1 text-center text-sm leading-relaxed text-white/90">{item.description}</p>
                 </div>
                 <div className="bg-card-footer px-4 py-3 text-center text-xs">

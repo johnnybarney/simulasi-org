@@ -1,5 +1,6 @@
 export type ServicePillarItem = {
   title: string;
+  titleCode?: string;
   description: string;
   strategicValue: string;
   iconSrc: string;
@@ -10,8 +11,8 @@ export const homeContent = {
     title: "CYBER COMMAND: AI-DRIVEN WARFARE SIMULATION",
     subtitle:
       "Transforming artificial threats into digital dominance. The premier dashboard for full-spectrum cyber exercise management and military cyber defense.",
-    primaryCta: "Book a Dedicated Platform Demo",
-    secondaryCta: "Contact Us",
+    primaryCta: "ACCESS WAR ROOM",
+    secondaryCta: "MISSION BRIEFING",
     imageSrc: "/images/landing.jpeg",
     imageAlt: "Simulasi.org cyber resilience platform landing illustration",
   },
@@ -23,35 +24,39 @@ export const homeContent = {
     title: "Core Service Pillars",
     items: [
       {
-        title: "OSINT & AI Intelligence",
+        title: "RECONNAISSANCE INTELLIGENCE",
         description:
           "Transform raw data into actionable intelligence with AI-augmented investigations and automated reconnaissance.",
         strategicValue: "Proactive Threat Detection",
         iconSrc: "/images/icons/osint-ai.jpg",
       },
       {
-        title: "Live Technical Simulation",
+        title: "TECHNICAL SIMULATION EXERCISE",
+        titleCode: "TSX",
         description:
           "Stress-test defenses with real-world, custom-crafted attacks delivered through controlled simulation environments.",
         strategicValue: "Validated Incident Response",
         iconSrc: "/images/icons/live-technical-simulation.jpg",
       },
       {
-        title: "Red Teaming",
+        title: "OFFENSIVE OPERATIONS",
+        titleCode: "RED TEAMING",
         description:
           "Simulate sophisticated adversaries to uncover hidden vulnerabilities and fortify defenses against advanced threats.",
         strategicValue: "Uncovered Vulnerabilities",
         iconSrc: "/images/icons/red-teaming.jpg",
       },
       {
-        title: "Tabletop Exercises",
+        title: "INTERACTIVE TABLETOP EXERCISE",
+        titleCode: "iTTX",
         description:
           "Coordinate leadership and technical teams through scenario-driven exercises that sharpen decision-making under pressure.",
         strategicValue: "Refined Crisis Management",
         iconSrc: "/images/icons/tabletop-exercises.jpg",
       },
       {
-        title: "Technical Cyber Drills",
+        title: "ADVANCE SIMULATION EXERCISE",
+        titleCode: "ASX",
         description:
           "Run hands-on drills that validate controls, tune detection, and build muscle memory across your security operations.",
         strategicValue: "Enhanced Team Competency",
