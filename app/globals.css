@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  /* DESIGN.md tokens */
+  --color-primary: #1a1a1a;
+  --color-accent-yellow: #ffcc00;
+  --color-accent-red: #e63b2e;
+  --color-accent-blue: #0055ff;
+  --color-background: #f5f0e8;
+
+  /* screen6 cyber theme */
+  --color-cyber-bg: #000000;
+  --color-cyan-neon: #00e5ff;
+  --color-magenta-neon: #ff00ff;
+  --color-muted: #cccccc;
+  --color-card-footer: #0d1117;
+
+  --font-headline: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-family-headline: var(--font-headline);
+  --font-family-body: var(--font-body);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-cyber-bg);
+    color: #ffffff;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-headline);
+  }
+}
+
+@layer utilities {
+  .gradient-cyan-magenta {
+    background-image: linear-gradient(to right, #00e5ff, #ff00ff);
+  }
+
+  .text-gradient-cyan-magenta {
+    background-image: linear-gradient(to right, #00e5ff, #ff00ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .border-glow-cyan-magenta {
+    box-shadow:
+      0 0 12px rgba(0, 229, 255, 0.35),
+      0 0 24px rgba(255, 0, 255, 0.2);
+  }
+
+  .circuit-pattern-left {
+    background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23a855f7' stroke-opacity='0.25' stroke-width='1'%3E%3Cpath d='M10 60h30M80 60h30M60 10v30M60 80v30M30 30h60v60H30z'/%3E%3Cpath d='M30 60h15M75 60h15M60 30v15M60 75v15'/%3E%3Ccircle cx='60' cy='60' r='4' fill='%23ff00ff' fill-opacity='0.2'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 120px 120px;
+    background-position: left top;
+    background-repeat: repeat;
+  }
+
+  .synthwave-grid {
+    background:
+      linear-gradient(to bottom, transparent 0%, #000000 55%),
+      repeating-linear-gradient(
+        90deg,
+        rgba(0, 229, 255, 0.22) 0px,
+        rgba(0, 229, 255, 0.22) 1px,
+        transparent 1px,
+        transparent 56px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        rgba(255, 0, 255, 0.18) 0px,
+        rgba(255, 0, 255, 0.18) 1px,
+        transparent 1px,
+        transparent 56px
+      );
+    background-size: 100% 100%, 56px 56px, 56px 56px;
+    transform: perspective(500px) rotateX(65deg);
+    transform-origin: center bottom;
+  }
+
+  .synthwave-horizon {
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(0, 229, 255, 0.7),
+      rgba(255, 0, 255, 0.7),
+      transparent
+    );
+    height: 2px;
+  }
+}
