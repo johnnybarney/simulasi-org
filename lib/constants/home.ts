@@ -7,7 +7,7 @@ export type ServicePillarItem = {
 
 export const homeContent = {
   hero: {
-    title: "Simulasi.org: Where Simulation Meets Certainty",
+    title: "Simulate Artificial Warfare Into Cyber Superiority",
     subtitle:
       "Transform your cyber readiness from theoretical planning to measurable capability with our advanced resilience platform.",
     primaryCta: "Book a Dedicated Platform Demo",
