@@ -220,6 +220,148 @@ export function LiveSimBenefitsSection() {
   );
 }
 
+const lifecycleStepColors = [
+  { ring: "border-cyan-neon text-cyan-neon", glow: "shadow-[0_0_18px_rgba(0,229,255,0.7)]", line: "from-cyan-neon" },
+  { ring: "border-[#6b8cff] text-[#6b8cff]", glow: "shadow-[0_0_18px_rgba(107,140,255,0.65)]", line: "from-[#6b8cff]" },
+  { ring: "border-[#b44dff] text-[#b44dff]", glow: "shadow-[0_0_18px_rgba(180,77,255,0.65)]", line: "from-[#b44dff]" },
+  { ring: "border-magenta-neon text-magenta-neon", glow: "shadow-[0_0_18px_rgba(255,0,255,0.7)]", line: "from-magenta-neon" },
+] as const;
+
+function StepConnector({
+  fromColor,
+  toColor,
+  className,
+}: {
+  fromColor: string;
+  toColor: string;
+  className?: string;
+}) {
+  return (
+    <div className={cn("relative flex flex-1 items-center px-1", className)} aria-hidden="true">
+      <div
+        className={cn(
+          "h-1 w-full rounded-full bg-gradient-to-r to-magenta-neon opacity-90",
+          fromColor,
+          "shadow-[0_0_10px_rgba(0,229,255,0.45)]",
+        )}
+      />
+      <svg
+        viewBox="0 0 12 12"
+        className={cn("absolute -right-0.5 h-3 w-3 shrink-0", toColor)}
+        aria-hidden="true"
+      >
+        <path d="M2 2l8 4-8 4V2z" fill="currentColor" />
+      </svg>
+    </div>
+  );
+}
+
+function StepProgressIndicator({
+  steps,
+  layout = "horizontal",
+}: {
+  steps: LifecycleStep[];
+  layout?: "horizontal" | "vertical";
+}) {
+  const total = steps.length;
+
+  if (layout === "vertical") {
+    return (
+      <ol className="relative mx-auto max-w-md space-y-0" aria-label="Simulation lifecycle progress">
+        <div
+          className="absolute bottom-8 left-6 top-8 w-1 rounded-full bg-gradient-to-b from-cyan-neon via-[#8b5cf6] to-magenta-neon opacity-80 shadow-[0_0_12px_rgba(0,229,255,0.4)]"
+          aria-hidden="true"
+        />
+        {steps.map((step, index) => {
+          const colors = lifecycleStepColors[index];
+          return (
+            <li key={step.title} className="relative flex gap-5 pb-10 last:pb-0">
+              <div className="relative z-10 flex flex-col items-center">
+                <div
+                  className={cn(
+                    "flex h-12 w-12 items-center justify-center rounded-full border-2 bg-cyber-bg font-headline text-sm font-bold",
+                    colors.ring,
+                    colors.glow,
+                  )}
+                >
+                  {index + 1}
+                </div>
+                <span className="mt-1 text-[10px] font-semibold uppercase tracking-wider text-white/50">
+                  {index + 1}/{total}
+                </span>
+              </div>
+              <div className="pt-1">
+                <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-cyan-neon">
+                  Step {index + 1}
+                </p>
+                <h3 className="mb-2 font-headline text-base font-bold text-white">{step.title}</h3>
+                <p className="text-sm leading-relaxed text-white/80">{step.description}</p>
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+    );
+  }
+
+  return (
+    <div className="w-full" role="list" aria-label="Simulation lifecycle progress">
+      {/* Progress track: numbered nodes + connectors */}
+      <div className="flex items-center" role="presentation">
+        {steps.map((step, index) => {
+          const colors = lifecycleStepColors[index];
+          const isLast = index === total - 1;
+          const nextColors = !isLast ? lifecycleStepColors[index + 1] : null;
+
+          return (
+            <div key={step.title} className={cn("flex items-center", isLast ? "shrink-0" : "flex-1")}>
+              <div className="flex shrink-0 flex-col items-center" role="listitem">
+                <div
+                  className={cn(
+                    "flex h-12 w-12 items-center justify-center rounded-full border-2 bg-cyber-bg font-headline text-base font-bold",
+                    colors.ring,
+                    colors.glow,
+                  )}
+                >
+                  {step.iconSrc ? (
+                    <div className="relative h-7 w-7">
+                      <Image src={step.iconSrc} alt="" fill sizes="28px" className="object-contain" />
+                    </div>
+                  ) : (
+                    index + 1
+                  )}
+                </div>
+                <span className="mt-1.5 whitespace-nowrap text-[10px] font-semibold uppercase tracking-wider text-white/50">
+                  Step {index + 1} of {total}
+                </span>
+              </div>
+              {!isLast && nextColors && (
+                <StepConnector
+                  fromColor={colors.line}
+                  toColor={nextColors.ring.split(" ")[1] ?? "text-magenta-neon"}
+                />
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Step labels + descriptions aligned under each node */}
+      <div className="mt-8 grid grid-cols-4 gap-4">
+        {steps.map((step, index) => (
+          <div key={step.title} className="text-center" role="listitem">
+            <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-cyan-neon">
+              Step {index + 1}
+            </p>
+            <h3 className="mb-2 font-headline text-sm font-bold text-white md:text-base">{step.title}</h3>
+            <p className="text-xs leading-relaxed text-white/75 md:text-sm">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function LifecycleSection() {
   const steps: LifecycleStep[] = [
     {
@@ -250,25 +392,14 @@ export function LifecycleSection() {
         <h2 className="mb-12 text-center font-headline text-2xl font-bold text-white md:text-3xl">
           Simulation Lifecycle
         </h2>
-        <ol className="flex flex-col items-center gap-8 md:flex-row md:items-start md:justify-center">
-          {steps.map((step, index) => (
-            <li key={step.title} className="contents">
-              <div className="flex w-full max-w-xs flex-col items-center text-center md:w-auto md:max-w-[220px]">
-                <OfferingIcon src={step.iconSrc} alt={step.title} className="mb-4" />
-                <h3 className="mb-2 font-headline text-base font-bold text-white">{step.title}</h3>
-                <p className="text-sm leading-relaxed text-white/80">{step.description}</p>
-              </div>
-              {index < steps.length - 1 && (
-                <span
-                  className="hidden shrink-0 self-center px-2 text-xl text-cyan-neon md:inline"
-                  aria-hidden="true"
-                >
-                  →
-                </span>
-              )}
-            </li>
-          ))}
-        </ol>
+
+        <div className="mx-auto hidden max-w-5xl md:block">
+          <StepProgressIndicator steps={steps} layout="horizontal" />
+        </div>
+
+        <div className="md:hidden">
+          <StepProgressIndicator steps={steps} layout="vertical" />
+        </div>
       </Container>
     </section>
   );

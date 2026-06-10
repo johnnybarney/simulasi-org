@@ -6,7 +6,7 @@ export const routes = {
   redTeaming: "/services/red-teaming",
   training: "/training",
   cdX: "/products/cd-x",
-  contact: "/contact",
+  contact: "/about-us#contact",
   aboutUs: "/about-us",
   privacy: "/#privacy",
   terms: "/#terms",
@@ -16,7 +16,6 @@ export const routes = {
 export type HeaderVariant =
   | "home"
   | "about-us"
-  | "contact"
   | "cyber-exercise"
   | "cd-x"
   | "live-simulation"
@@ -83,13 +82,11 @@ const homeNavItems: NavItem[] = [
   },
   { label: "Insights", href: routes.osintAi },
   { label: "About Us", href: routes.aboutUs },
-  { label: "Contact Us", href: routes.contact },
 ];
 
 export const headerConfigs: Record<HeaderVariant, NavItem[]> = {
   home: homeNavItems,
   "about-us": homeNavItems,
-  contact: homeNavItems,
   "cyber-exercise": [
     { label: "Home", href: routes.home },
     {

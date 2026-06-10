@@ -29,36 +29,25 @@ function ContactIcon({ type }: { type: "location" | "mail" | "clock" }) {
   );
 }
 
-export function ContactHero() {
-  const { hero } = contactContent;
+export function ContactMainSection({ embedded = false }: { embedded?: boolean }) {
+  const { hero, office, channels } = contactContent;
 
   return (
-    <section className="circuit-pattern-left relative overflow-hidden py-20 md:py-28">
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-neon/60 to-transparent"
-        aria-hidden="true"
-      />
-      <Container className="relative text-center">
-        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-cyan-neon">
-          {hero.subtitle}
-        </p>
-        <h1 className="font-headline text-4xl font-bold md:text-5xl lg:text-6xl">
-          <GradientText as="span">{hero.title}</GradientText>
-        </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/90 md:text-lg">
-          {hero.description}
-        </p>
-      </Container>
-    </section>
-  );
-}
-
-export function ContactMainSection() {
-  const { office, channels } = contactContent;
-
-  return (
-    <Section className="pb-20 pt-0">
+    <Section id={embedded ? "contact" : undefined} className={embedded ? "py-20" : "pb-20 pt-0"}>
       <Container>
+        {embedded && (
+          <div className="mb-12 text-center">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-cyan-neon">
+              {hero.subtitle}
+            </p>
+            <h2 className="font-headline text-3xl font-bold text-white md:text-4xl">
+              <GradientText as="span">{hero.title}</GradientText>
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/90">
+              {hero.description}
+            </p>
+          </div>
+        )}
         <div className="grid gap-12 lg:grid-cols-5 lg:gap-16">
           <div className="space-y-8 lg:col-span-2">
             <div className="rounded-lg border border-cyan-neon/30 bg-cyan-neon/5 p-6">
