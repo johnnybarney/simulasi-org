@@ -7,9 +7,9 @@ export type ServicePillarItem = {
 
 export const homeContent = {
   hero: {
-    title: "Simulate Artificial Warfare Into Cyber Superiority",
+    title: "CYBER COMMAND: AI-DRIVEN WARFARE SIMULATION",
     subtitle:
-      "Transform your cyber readiness from theoretical planning to measurable capability with our advanced resilience platform.",
+      "Transforming artificial threats into digital dominance. The premier dashboard for full-spectrum cyber exercise management and military cyber defense.",
     primaryCta: "Book a Dedicated Platform Demo",
     secondaryCta: "Contact Us",
     imageSrc: "/images/landing.jpeg",
