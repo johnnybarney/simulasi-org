@@ -4,8 +4,9 @@ export const routes = {
   liveSimulation: "/services/live-technical-simulation",
   osintAi: "/services/osint-ai-intelligence",
   redTeaming: "/services/red-teaming",
-  training: "/training",
+  training: "https://rp.my/training",
   cdX: "/products/cd-x",
+  mniX3dKit: "/products/mni-x-3d-kit",
   contact: "/about-us#contact",
   aboutUs: "/about-us",
   privacy: "/#privacy",
@@ -32,6 +33,7 @@ export type FooterVariant =
 
 export type NavChild = {
   label: string;
+  labelCode?: string;
   href: string;
   children?: NavChild[];
 };
@@ -44,26 +46,19 @@ export type NavItem = {
 };
 
 export const servicePages: NavChild[] = [
-  { label: "Cyber Exercise Services", href: routes.cyberExercise },
-  { label: "TECHNICAL SIMULATION EXERCISE ( TSX )", href: routes.liveSimulation },
+  { label: "TECHNICAL SIMULATION EXERCISE", labelCode: "TSX", href: routes.liveSimulation },
+  { label: "INTERACTIVE SIMULATION EXERCISE", labelCode: "iTTX", href: routes.cyberExercise },
+  { label: "ADVANCE SIMULATION EXERCISE", labelCode: "ASX", href: routes.cyberExercise },
+  { label: "OFFENSIVE OPERATIONS", labelCode: "ATTACK SIMULATION", href: routes.redTeaming },
   { label: "RECONNAISSANCE INTELLIGENCE", href: routes.osintAi },
-  { label: "OFFENSIVE OPERATIONS ( RED TEAMING )", href: routes.redTeaming },
+  { label: "Capacity Building", href: routes.training },
 ];
 
-/** Add training program links here when ready. */
-export const trainingPages: NavChild[] = [];
-
-export const servicesMenuChildren: NavChild[] = [
-  ...servicePages,
-  {
-    label: "Training",
-    href: routes.training,
-    children: trainingPages,
-  },
-];
+export const servicesMenuChildren: NavChild[] = servicePages;
 
 export const productPages = [
   { label: "CD-X Platform", href: routes.cdX },
+  { label: "MNI-X 3D Kit", href: routes.mniX3dKit },
 ];
 
 const homeNavItems: NavItem[] = [
@@ -80,7 +75,7 @@ const homeNavItems: NavItem[] = [
     hasDropdown: true,
     children: productPages,
   },
-  { label: "Insights", href: routes.osintAi },
+  { label: "News", href: routes.osintAi },
   { label: "About Us", href: routes.aboutUs },
 ];
 

@@ -13,18 +13,19 @@ export const homeContent = {
       "Transforming artificial threats into digital dominance. The premier dashboard for full-spectrum cyber exercise management and military cyber defense.",
     primaryCta: "ACCESS WAR ROOM",
     secondaryCta: "MISSION BRIEFING",
-    imageSrc: "/images/landing.jpeg",
-    imageAlt: "Simulasi.org cyber resilience platform landing illustration",
+    videoSrc: "/images/landing.mp4",
+    videoAlt: "RP.my cyber resilience platform landing video",
   },
   about: {
     title: "About Simulasi.org: The Shift to Measurable Capability",
     body: "The longer governments and enterprises rely on static defense, the wider the gap between policy and reality. Simulasi.org closes that gap with continuous, dynamic simulation that delivers measurable capability — not theoretical planning.",
   },
   servicePillars: {
-    title: "Core Service Pillars",
+    title: "Our Strategic Capabilities",
     items: [
       {
         title: "RECONNAISSANCE INTELLIGENCE",
+        titleCode: "RECON INTEL",
         description:
           "Transform raw data into actionable intelligence with AI-augmented investigations and automated reconnaissance.",
         strategicValue: "Proactive Threat Detection",
@@ -40,17 +41,17 @@ export const homeContent = {
       },
       {
         title: "OFFENSIVE OPERATIONS",
-        titleCode: "RED TEAMING",
+        titleCode: "ATTACK SIMULATION",
         description:
           "Simulate sophisticated adversaries to uncover hidden vulnerabilities and fortify defenses against advanced threats.",
         strategicValue: "Uncovered Vulnerabilities",
         iconSrc: "/images/icons/red-teaming.jpg",
       },
       {
-        title: "INTERACTIVE TABLETOP EXERCISE",
+        title: "INTERACTIVE SIMULATION EXERCISE",
         titleCode: "iTTX",
         description:
-          "Coordinate leadership and technical teams through scenario-driven exercises that sharpen decision-making under pressure.",
+          "Coordinate leadership and technical teams through interactive scenario-driven exercises that sharpen decision-making under pressure.",
         strategicValue: "Refined Crisis Management",
         iconSrc: "/images/icons/tabletop-exercises.jpg",
       },

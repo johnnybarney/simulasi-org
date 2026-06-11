@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { Logo } from "@/components/icons/Logo";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
@@ -16,17 +19,36 @@ type HeaderProps = {
   activeHref?: string;
 };
 
+function isExternalHref(href: string) {
+  return href.startsWith("http://") || href.startsWith("https://");
+}
+
+function NavMenuLabel({ label, labelCode }: { label: string; labelCode?: string }) {
+  if (!labelCode) {
+    return <span>{label}</span>;
+  }
+
+  return (
+    <>
+      <span className="block leading-snug">{label}</span>
+      <span className="mt-0.5 block text-cyan-neon">( {labelCode} )</span>
+    </>
+  );
+}
+
 function NavSubmenuItem({ child }: { child: NavChild }) {
   const hasNestedMenu = Boolean(child.children?.length);
+  const external = isExternalHref(child.href);
 
   if (!child.children) {
     return (
       <li>
         <Link
           href={child.href}
-          className="block px-4 py-2 text-sm text-white hover:bg-cyan-neon/10 hover:text-cyan-neon"
+          className="block px-4 py-2.5 text-sm text-white hover:bg-cyan-neon/10 hover:text-cyan-neon"
+          {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
         >
-          {child.label}
+          <NavMenuLabel label={child.label} labelCode={child.labelCode} />
         </Link>
       </li>
     );
@@ -36,9 +58,9 @@ function NavSubmenuItem({ child }: { child: NavChild }) {
     <li className="group/submenu relative">
       <Link
         href={child.href}
-        className="flex items-center justify-between gap-3 px-4 py-2 text-sm text-white hover:bg-cyan-neon/10 hover:text-cyan-neon"
+        className="flex items-center justify-between gap-3 px-4 py-2.5 text-sm text-white hover:bg-cyan-neon/10 hover:text-cyan-neon"
       >
-        {child.label}
+        <NavMenuLabel label={child.label} labelCode={child.labelCode} />
         <span className="text-[10px] opacity-70" aria-hidden="true">
           ▸
         </span>
@@ -69,10 +91,37 @@ function NavSubmenuItem({ child }: { child: NavChild }) {
 }
 
 function NavDropdown({ item }: { item: NavItem }) {
+  const [open, setOpen] = useState(false);
+  const itemRef = useRef<HTMLLIElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+
+    function handlePointerDown(event: MouseEvent) {
+      if (itemRef.current && !itemRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+
+    function handleEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") setOpen(false);
+    }
+
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [open]);
+
   return (
-    <li className="group relative">
-      <Link
-        href={item.href}
+    <li ref={itemRef} className="relative">
+      <button
+        type="button"
+        aria-expanded={open}
+        aria-haspopup="true"
+        onClick={() => setOpen((current) => !current)}
         className="flex items-center gap-1 text-sm font-medium text-white transition-colors hover:text-cyan-neon"
       >
         {item.label}
@@ -81,9 +130,9 @@ function NavDropdown({ item }: { item: NavItem }) {
             ▾
           </span>
         )}
-      </Link>
-      {item.children && item.children.length > 0 && (
-        <ul className="invisible absolute right-0 top-full z-50 mt-2 min-w-[240px] border border-cyan-neon/30 bg-cyber-bg py-2 opacity-0 shadow-[0_0_20px_rgba(0,229,255,0.15)] transition-all group-hover:visible group-hover:opacity-100">
+      </button>
+      {item.children && item.children.length > 0 && open && (
+        <ul className="absolute right-0 top-full z-50 mt-2 min-w-[280px] border border-cyan-neon/30 bg-cyber-bg py-2 shadow-[0_0_20px_rgba(0,229,255,0.15)]">
           {item.children.map((child) => (
             <NavSubmenuItem key={child.label} child={child} />
           ))}
