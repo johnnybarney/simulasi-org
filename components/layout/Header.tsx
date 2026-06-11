@@ -149,7 +149,7 @@ export function Header({ variant = "home", activeHref }: HeaderProps) {
   return (
     <header role="banner" className="relative z-20 bg-cyber-bg">
       <Container as="div" className="flex items-center justify-between gap-4 py-6">
-        <Link href="/" aria-label="Simulasi.org home">
+        <Link href="/" aria-label="Simulasi home">
           <Logo />
         </Link>
         <div className="flex items-center gap-4 md:gap-6">

@@ -4,25 +4,47 @@ import { Container } from "@/components/layout/Container";
 import { cn } from "@/lib/cn";
 import { routes } from "@/lib/navigation";
 
-function AiAugmentedEmblem({ className }: { className?: string }) {
+const osintIcons = {
+  automatedSensemaking: "/images/virus.jpg",
+  aiProbes: "/images/Ai probes.jpg",
+  skillGapMitigation: "/images/skill gap.jpg",
+  githubScraping: "/images/github.jpg",
+  socialMediaMonitoring: "/images/socialmedia.jpg",
+  metaSearchEngines: "/images/metsearch.jpg",
+  customWebScraping: "/images/customweb.jpg",
+  apiConnectors: "/images/api.jpg",
+  secureDataStorage: "/images/securedata.jpg",
+  attackSurfaceMapping: "/images/mapsurface.jpg",
+  breachedDataDiscovery: "/images/breachdata.jpg",
+  automatedReconnaissance: "/images/automated.jpg",
+  deepDarkWebAnalysis: "/images/deep.jpg",
+  humintDigitization: "/images/humint.jpg",
+  businessIntelligence: "/images/business.jpg",
+  scalability: "/images/scala.jpg",
+  passiveSafe: "/images/passive.jpg",
+  actionableInsights: "/images/action.jpg",
+} as const;
+
+function SectionVideo({
+  src,
+  alt,
+  className,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+}) {
   return (
-    <div className={cn("relative mx-auto h-24 w-28", className)}>
-      <div
-        className="absolute inset-0 gradient-cyan-magenta shadow-[0_0_20px_rgba(255,0,255,0.35)]"
-        style={{
-          clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
-        }}
+    <div className={cn("relative overflow-hidden", className)}>
+      <video
+        src={src}
+        autoPlay
+        loop
+        muted
+        playsInline
+        aria-label={alt}
+        className="h-full w-full object-cover"
       />
-      <div
-        className="absolute inset-[2px] flex items-center justify-center bg-cyber-bg px-2"
-        style={{
-          clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
-        }}
-      >
-        <span className="text-center font-headline text-xs font-bold leading-tight text-white">
-          AI-Augmented
-        </span>
-      </div>
     </div>
   );
 }
@@ -37,16 +59,11 @@ function SectionIcon({
   className?: string;
 }) {
   return (
-    <div
-      className={cn(
-        "relative mx-auto flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-cyan-neon/50 bg-cyber-bg shadow-[0_0_16px_rgba(0,229,255,0.15)]",
-        className,
-      )}
-    >
+    <div className={cn("relative mx-auto h-16 w-16 shrink-0", className)}>
       {src ? (
-        <Image src={src} alt={alt} fill sizes="64px" className="object-contain p-2" />
+        <Image src={src} alt={alt} fill sizes="64px" className="object-contain" />
       ) : (
-        <span className="h-7 w-7 rounded-full bg-cyan-neon/20" aria-hidden="true" />
+        <span className="block h-full w-full bg-cyan-neon/10" aria-hidden="true" />
       )}
     </div>
   );
@@ -75,18 +92,19 @@ function FeatureRow({
 function CapabilityChip({
   label,
   border,
+  iconSrc,
 }: {
   label: string;
   border: "cyan" | "magenta";
+  iconSrc?: string;
 }) {
   return (
     <div
       className={cn(
-        "flex flex-col items-center justify-center rounded-lg border-2 px-4 py-6 text-center",
-        border === "magenta" ? "border-magenta-neon/70" : "border-cyan-neon/70",
+        "flex flex-col items-center justify-center rounded-lg border-gradient-cyan-magenta bg-cyber-bg px-4 py-6 text-center",
       )}
     >
-      <SectionIcon alt={label} className="mb-3 h-14 w-14" />
+      <SectionIcon src={iconSrc} alt={label} className="mb-3 h-14 w-14" />
       <p
         className={cn(
           "font-headline text-sm font-bold",
@@ -125,7 +143,11 @@ export function OsintHero() {
             Explore Our Platform
           </Button>
         </div>
-        <AiAugmentedEmblem className="mt-12" />
+        <SectionVideo
+          src="/images/jellybrain.mp4"
+          alt="AI-augmented intelligence visualization"
+          className="mx-auto mt-12 aspect-square w-full max-w-[340px] rounded-lg border-gradient-cyan-magenta bg-cyber-bg sm:max-w-[420px] md:max-w-[500px] lg:max-w-[560px]"
+        />
       </Container>
     </section>
   );
@@ -138,23 +160,30 @@ export function AiInvestigationsSection() {
     {
       title: "Automated Sensemaking",
       description: "Synthesize vast datasets and identify patterns automatically.",
+      iconSrc: osintIcons.automatedSensemaking,
     },
     {
       title: "AI Probes",
       description: "Conduct deep, autonomous inquiries and test hypotheses.",
+      iconSrc: osintIcons.aiProbes,
     },
     {
       title: "Skill Gap Mitigation",
       description: "Augment human capabilities and accelerate learning curves.",
+      iconSrc: osintIcons.skillGapMitigation,
     },
   ];
 
-  const magentaCapabilities = ["GitHub Scraping", "Social Media Monitoring"];
+  const magentaCapabilities = [
+    { label: "GitHub Scraping", iconSrc: osintIcons.githubScraping },
+    { label: "Social Media Monitoring", iconSrc: osintIcons.socialMediaMonitoring },
+  ];
+
   const cyanCapabilities = [
-    "Meta-Search Engines",
-    "Custom Web Scraping",
-    "API Connectors",
-    "Secure Data Storage",
+    { label: "Meta-Search Engines", iconSrc: osintIcons.metaSearchEngines },
+    { label: "Custom Web Scraping", iconSrc: osintIcons.customWebScraping },
+    { label: "API Connectors", iconSrc: osintIcons.apiConnectors },
+    { label: "Secure Data Storage", iconSrc: osintIcons.secureDataStorage },
   ];
 
   return (
@@ -165,12 +194,12 @@ export function AiInvestigationsSection() {
         </h2>
 
         <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-12">
-          <div className="overflow-hidden rounded-lg border border-cyan-neon/30 bg-black/40">
-            <div className="flex aspect-[4/3] items-center justify-center px-6">
-              <p className="text-center text-sm text-white/40">
-                Human Analyst → LLMs &amp; AI Models → Complex Data Environment
-              </p>
-            </div>
+          <div className="overflow-hidden rounded-lg border-gradient-cyan-magenta bg-cyber-bg">
+            <SectionVideo
+              src="/images/aimove.mp4"
+              alt="Human Analyst to LLMs and AI Models in a complex data environment"
+              className="aspect-[4/3] w-full"
+            />
           </div>
 
           <div>
@@ -188,13 +217,23 @@ export function AiInvestigationsSection() {
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           <div className="grid gap-4 sm:grid-cols-2">
-            {magentaCapabilities.map((label) => (
-              <CapabilityChip key={label} label={label} border="magenta" />
+            {magentaCapabilities.map((item) => (
+              <CapabilityChip
+                key={item.label}
+                label={item.label}
+                border="magenta"
+                iconSrc={item.iconSrc}
+              />
             ))}
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            {cyanCapabilities.map((label) => (
-              <CapabilityChip key={label} label={label} border="cyan" />
+            {cyanCapabilities.map((item) => (
+              <CapabilityChip
+                key={item.label}
+                label={item.label}
+                border="cyan"
+                iconSrc={item.iconSrc}
+              />
             ))}
           </div>
         </div>
@@ -205,38 +244,29 @@ export function AiInvestigationsSection() {
 
 /* ── 3. Automated Vulnerability Assessment ──────────────── */
 
-type BorderTone = "cyan" | "magenta" | "purple";
-
-const borderToneClass: Record<BorderTone, string> = {
-  cyan: "border-cyan-neon/70 shadow-[0_0_20px_rgba(0,229,255,0.15)]",
-  magenta: "border-magenta-neon/70 shadow-[0_0_20px_rgba(255,0,255,0.15)]",
-  purple: "border-violet-500/70 shadow-[0_0_20px_rgba(139,92,246,0.2)]",
-};
-
 export function VulnerabilitySection() {
   const cards: {
     title: string;
     description: string;
-    border: BorderTone;
-    iconSrc?: string;
+    iconSrc: string;
   }[] = [
     {
       title: "Attack Surface Mapping",
       description:
         "Continuous discovery and mapping of external assets, exposed services, and entry points across your digital footprint.",
-      border: "cyan",
+      iconSrc: osintIcons.attackSurfaceMapping,
     },
     {
       title: "Breached Data Discovery",
       description:
         "Search the deep and dark web for leaked credentials, exposed databases, and compromised organizational data.",
-      border: "magenta",
+      iconSrc: osintIcons.breachedDataDiscovery,
     },
     {
       title: "Automated Reconnaissance",
       description:
         "Zero-touch continuous monitoring using tools like Nmap and SpiderFoot to maintain real-time situational awareness.",
-      border: "purple",
+      iconSrc: osintIcons.automatedReconnaissance,
     },
   ];
 
@@ -250,10 +280,7 @@ export function VulnerabilitySection() {
           {cards.map((card) => (
             <li
               key={card.title}
-              className={cn(
-                "rounded-lg border-2 bg-cyber-bg p-6",
-                borderToneClass[card.border],
-              )}
+              className="rounded-lg border-gradient-cyan-magenta bg-cyber-bg p-6"
             >
               <SectionIcon src={card.iconSrc} alt={card.title} className="mb-4" />
               <h3 className="mb-3 font-headline text-lg font-bold text-white">{card.title}</h3>
@@ -274,19 +301,19 @@ export function ForensicsSection() {
       title: "Deep/Dark Web Analysis",
       description:
         "Monitor underground forums, marketplaces, and hidden services for threats targeting your organization.",
-      border: "cyan" as const,
+      iconSrc: osintIcons.deepDarkWebAnalysis,
     },
     {
       title: "HUMINT Digitization",
       description:
         "Structure human intelligence into searchable, actionable data with AI-assisted classification and linking.",
-      border: "magenta" as const,
+      iconSrc: osintIcons.humintDigitization,
     },
     {
       title: "Business Intelligence",
       description:
         "Competitive and strategic insights from open-source data to inform executive and operational decisions.",
-      border: "cyan" as const,
+      iconSrc: osintIcons.businessIntelligence,
     },
   ];
 
@@ -312,14 +339,9 @@ export function ForensicsSection() {
           {items.map((item) => (
             <li
               key={item.title}
-              className={cn(
-                "rounded-lg border-2 bg-black/60 p-6 text-center backdrop-blur-sm",
-                item.border === "magenta"
-                  ? "border-magenta-neon/70"
-                  : "border-cyan-neon/70",
-              )}
+              className="rounded-lg border-gradient-cyan-magenta-muted p-6 text-center backdrop-blur-sm"
             >
-              <SectionIcon src={undefined} alt={item.title} className="mb-4" />
+              <SectionIcon src={item.iconSrc} alt={item.title} className="mb-4" />
               <h3 className="mb-3 font-headline text-lg font-bold text-white">{item.title}</h3>
               <p className="text-sm leading-relaxed text-white/80">{item.description}</p>
             </li>
@@ -338,16 +360,19 @@ export function OsintWhyChooseSection() {
       title: "Scalability",
       description:
         "Handle massive datasets across multiple sources simultaneously without compromising analysis depth or speed.",
+      iconSrc: osintIcons.scalability,
     },
     {
       title: "Passive & Safe (Zero-Touch)",
       description:
         "Remain undetected during investigations with passive collection methods that protect your operational security.",
+      iconSrc: osintIcons.passiveSafe,
     },
     {
       title: "Actionable Insights",
       description:
         "Turn raw information into strategic advantage with prioritized, decision-ready intelligence deliverables.",
+      iconSrc: osintIcons.actionableInsights,
     },
   ];
 
@@ -360,7 +385,7 @@ export function OsintWhyChooseSection() {
         <ul className="grid gap-10 md:grid-cols-3">
           {items.map((item) => (
             <li key={item.title} className="text-center">
-              <SectionIcon alt={item.title} className="mb-4" />
+              <SectionIcon src={item.iconSrc} alt={item.title} className="mb-4" />
               <h3 className="mb-3 font-headline text-lg font-bold text-white">{item.title}</h3>
               <p className="text-sm leading-relaxed text-white/80">{item.description}</p>
             </li>

@@ -17,6 +17,7 @@
 
   --font-headline: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-brand: var(--font-barlow), ui-sans-serif, system-ui, sans-serif;
   --font-family-headline: var(--font-headline);
   --font-family-body: var(--font-body);
 }
@@ -52,6 +53,24 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+  }
+
+  .border-gradient-cyan-magenta {
+    border: 2px solid transparent;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    background-image:
+      linear-gradient(#000000, #000000),
+      linear-gradient(to right, #00e5ff, #ff00ff);
+  }
+
+  .border-gradient-cyan-magenta-muted {
+    border: 2px solid transparent;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      linear-gradient(to right, #00e5ff, #ff00ff);
   }
 
   .border-glow-cyan-magenta {
