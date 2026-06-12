@@ -7,11 +7,11 @@ import { homeContent } from "@/lib/constants/home";
 import { routes } from "@/lib/navigation";
 
 const pillarRoutes = [
-  routes.osintAi,
-  routes.liveSimulation,
-  routes.redTeaming,
-  routes.cyberExercise,
-  routes.cyberExercise,
+  routes.reconIntel,
+  routes.tsx,
+  routes.attackSimulation,
+  routes.ittx,
+  routes.asx,
 ];
 
 export function ServicePillarsSection() {

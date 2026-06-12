@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/layout/Container";
+import { GradientBorder } from "@/components/ui/GradientBorder";
 import { cn } from "@/lib/cn";
 import { routes } from "@/lib/navigation";
 
@@ -53,15 +54,23 @@ function SectionIcon({
   src,
   alt,
   className,
+  knockoutBlack,
 }: {
   src?: string;
   alt: string;
   className?: string;
+  knockoutBlack?: boolean;
 }) {
   return (
     <div className={cn("relative mx-auto h-16 w-16 shrink-0", className)}>
       {src ? (
-        <Image src={src} alt={alt} fill sizes="64px" className="object-contain" />
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="64px"
+          className={cn("object-contain", knockoutBlack && "mix-blend-screen")}
+        />
       ) : (
         <span className="block h-full w-full bg-cyan-neon/10" aria-hidden="true" />
       )}
@@ -119,7 +128,7 @@ function CapabilityChip({
 
 /* ── 1. Hero ─────────────────────────────────────────────── */
 
-export function OsintHero() {
+export function ReconnaissanceIntelligenceHero() {
   return (
     <section className="relative py-20 md:py-28">
       <div
@@ -132,22 +141,35 @@ export function OsintHero() {
       />
       <Container className="relative text-center">
         <h1 className="font-headline text-4xl font-bold text-cyan-neon drop-shadow-[0_0_20px_rgba(0,229,255,0.5)] md:text-5xl">
-          OSINT &amp; AI-Driven Intelligence
+          Reconnaissance Intelligence ( Recon Intel )
         </h1>
         <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-white/90 md:text-lg">
           Transform raw data into actionable military and cyber intelligence. Accelerate
           decision-making with automated sensemaking and predictive insights.
         </p>
         <div className="mt-8">
-          <Button href={routes.osintAi} variant="outline">
+          <Button href={routes.reconIntel} variant="outline">
             Explore Our Platform
           </Button>
         </div>
-        <SectionVideo
-          src="/images/jellybrain.mp4"
-          alt="AI-augmented intelligence visualization"
-          className="mx-auto mt-12 aspect-square w-full max-w-[340px] rounded-lg border-gradient-cyan-magenta bg-cyber-bg sm:max-w-[420px] md:max-w-[500px] lg:max-w-[560px]"
-        />
+        <GradientBorder
+          rounded="lg"
+          glow
+          className="mx-auto mt-12 w-full max-w-[340px] sm:max-w-[420px] md:max-w-[500px] lg:max-w-[560px]"
+          innerClassName="overflow-hidden"
+        >
+          <div className="aspect-square w-full">
+            <video
+              src="/images/jellybrain.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              aria-label="Reconnaissance intelligence visualization"
+              className="h-full w-full object-cover"
+            />
+          </div>
+        </GradientBorder>
       </Container>
     </section>
   );
@@ -155,7 +177,7 @@ export function OsintHero() {
 
 /* ── 2. AI-Augmented Investigations ─────────────────────── */
 
-export function AiInvestigationsSection() {
+export function ReconnaissanceIntelligenceInvestigationsSection() {
   const features = [
     {
       title: "Automated Sensemaking",
@@ -244,7 +266,7 @@ export function AiInvestigationsSection() {
 
 /* ── 3. Automated Vulnerability Assessment ──────────────── */
 
-export function VulnerabilitySection() {
+export function ReconnaissanceIntelligenceVulnerabilitySection() {
   const cards: {
     title: string;
     description: string;
@@ -295,7 +317,7 @@ export function VulnerabilitySection() {
 
 /* ── 4. Digital Forensics & Investigations ──────────────── */
 
-export function ForensicsSection() {
+export function ReconnaissanceIntelligenceForensicsSection() {
   const items = [
     {
       title: "Deep/Dark Web Analysis",
@@ -341,7 +363,12 @@ export function ForensicsSection() {
               key={item.title}
               className="rounded-lg border-gradient-cyan-magenta-muted p-6 text-center backdrop-blur-sm"
             >
-              <SectionIcon src={item.iconSrc} alt={item.title} className="mb-4" />
+              <SectionIcon
+                src={item.iconSrc}
+                alt={item.title}
+                className="mb-4"
+                knockoutBlack={item.title === "Deep/Dark Web Analysis"}
+              />
               <h3 className="mb-3 font-headline text-lg font-bold text-white">{item.title}</h3>
               <p className="text-sm leading-relaxed text-white/80">{item.description}</p>
             </li>
@@ -354,7 +381,7 @@ export function ForensicsSection() {
 
 /* ── 5. Why Choose Simulasi.org for OSINT & AIT ─────────── */
 
-export function OsintWhyChooseSection() {
+export function ReconnaissanceIntelligenceWhyChooseSection() {
   const items = [
     {
       title: "Scalability",

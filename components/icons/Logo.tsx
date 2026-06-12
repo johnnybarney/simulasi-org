@@ -9,19 +9,19 @@ type LogoProps = {
 
 export function Logo({ className, showText = true, size = "md" }: LogoProps) {
   const textClass = size === "sm" ? "text-base" : "text-lg";
-  const iconBox = size === "sm" ? "h-7 w-7 md:h-8 md:w-8" : "h-8 w-8 md:h-10 md:w-10";
+  const iconBox = size === "sm" ? "h-8 w-8 md:h-9 md:w-9" : "h-9 w-9 md:h-11 md:w-11";
 
   return (
     <div className={cn("flex items-center gap-2", className)}>
       <div className={cn("relative shrink-0 overflow-hidden", iconBox)}>
         <Image
-          src="/images/rpmylogo.jpg"
+          src="/images/rpmylogo2.jpg"
           alt=""
-          width={1080}
-          height={607}
+          width={460}
+          height={453}
           priority
           aria-hidden="true"
-          className="h-full w-auto max-w-none object-cover object-left"
+          className="h-full w-full object-contain"
         />
       </div>
       {showText && (

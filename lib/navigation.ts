@@ -1,9 +1,10 @@
 export const routes = {
   home: "/",
-  cyberExercise: "/services/cyber-exercise",
-  liveSimulation: "/services/live-technical-simulation",
-  osintAi: "/services/osint-ai-intelligence",
-  redTeaming: "/services/red-teaming",
+  tsx: "/services/tsx",
+  ittx: "/services/ittx",
+  asx: "/services/asx",
+  attackSimulation: "/services/attack-simulation",
+  reconIntel: "/services/recon-intelligence",
   training: "https://rp.my/training",
   cdX: "/products/cd-x",
   mniX3dKit: "/products/mni-x-3d-kit",
@@ -17,19 +18,21 @@ export const routes = {
 export type HeaderVariant =
   | "home"
   | "about-us"
-  | "cyber-exercise"
+  | "tabletop-exercise"
+  | "advance-simulation"
   | "cd-x"
-  | "live-simulation"
-  | "osint"
-  | "red-teaming";
+  | "technical-simulation-exercise"
+  | "reconnaissance-intelligence"
+  | "offensive-operations";
 
 export type FooterVariant =
   | "home"
-  | "cyber-exercise"
+  | "tabletop-exercise"
+  | "advance-simulation"
   | "cd-x"
-  | "live-simulation"
-  | "osint"
-  | "red-teaming";
+  | "technical-simulation-exercise"
+  | "reconnaissance-intelligence"
+  | "offensive-operations";
 
 export type NavChild = {
   label: string;
@@ -46,11 +49,11 @@ export type NavItem = {
 };
 
 export const servicePages: NavChild[] = [
-  { label: "TECHNICAL SIMULATION EXERCISE", labelCode: "TSX", href: routes.liveSimulation },
-  { label: "INTERACTIVE SIMULATION EXERCISE", labelCode: "iTTX", href: routes.cyberExercise },
-  { label: "ADVANCE SIMULATION EXERCISE", labelCode: "ASX", href: routes.cyberExercise },
-  { label: "OFFENSIVE OPERATIONS", labelCode: "ATTACK SIMULATION", href: routes.redTeaming },
-  { label: "RECONNAISSANCE INTELLIGENCE", href: routes.osintAi },
+  { label: "Technical Simulation Exercise", labelCode: "TSX", href: routes.tsx },
+  { label: "Interactive Tabletop Exercise", labelCode: "iTTX", href: routes.ittx },
+  { label: "Advance Simulation Exercise", labelCode: "ASX", href: routes.asx },
+  { label: "Offensive Operations", labelCode: "Attack Simulation", href: routes.attackSimulation },
+  { label: "Reconnaissance Intelligence", labelCode: "Recon Intel", href: routes.reconIntel },
   { label: "Capacity Building", href: routes.training },
 ];
 
@@ -65,7 +68,7 @@ const homeNavItems: NavItem[] = [
   { label: "Home", href: routes.home },
   {
     label: "Services",
-    href: routes.cyberExercise,
+    href: routes.tsx,
     hasDropdown: true,
     children: servicesMenuChildren,
   },
@@ -75,18 +78,30 @@ const homeNavItems: NavItem[] = [
     hasDropdown: true,
     children: productPages,
   },
-  { label: "News", href: routes.osintAi },
+  { label: "News", href: routes.reconIntel },
   { label: "About Us", href: routes.aboutUs },
 ];
 
 export const headerConfigs: Record<HeaderVariant, NavItem[]> = {
   home: homeNavItems,
   "about-us": homeNavItems,
-  "cyber-exercise": [
+  "tabletop-exercise": [
     { label: "Home", href: routes.home },
     {
       label: "Services",
-      href: routes.cyberExercise,
+      href: routes.tsx,
+      hasDropdown: true,
+      children: servicesMenuChildren,
+    },
+    { label: "Solutions", href: routes.cdX },
+    { label: "About Us", href: routes.aboutUs },
+    { label: "Contact", href: routes.contact },
+  ],
+  "advance-simulation": [
+    { label: "Home", href: routes.home },
+    {
+      label: "Services",
+      href: routes.tsx,
       hasDropdown: true,
       children: servicesMenuChildren,
     },
@@ -99,45 +114,45 @@ export const headerConfigs: Record<HeaderVariant, NavItem[]> = {
     { label: "Platform", href: routes.cdX },
     {
       label: "Services",
-      href: routes.cyberExercise,
+      href: routes.tsx,
       hasDropdown: true,
       children: servicesMenuChildren,
     },
-    { label: "Blog", href: routes.osintAi },
+    { label: "Blog", href: routes.reconIntel },
     { label: "About Us", href: routes.aboutUs },
     { label: "Contact Us", href: routes.contact },
   ],
-  "live-simulation": [
+  "technical-simulation-exercise": [
     { label: "Home", href: routes.home },
     {
       label: "Services",
-      href: routes.liveSimulation,
+      href: routes.tsx,
       hasDropdown: true,
       children: servicesMenuChildren,
     },
     { label: "Solutions", href: routes.cdX },
     { label: "About Us", href: routes.aboutUs },
-    { label: "Resources", href: routes.osintAi },
+    { label: "Resources", href: routes.reconIntel },
     { label: "Contact", href: routes.contact },
   ],
-  osint: [
+  "reconnaissance-intelligence": [
     { label: "Home", href: routes.home },
-    { label: "Solutions", href: routes.osintAi },
+    { label: "Solutions", href: routes.reconIntel },
     {
       label: "Services",
-      href: routes.cyberExercise,
+      href: routes.tsx,
       hasDropdown: true,
       children: servicesMenuChildren,
     },
-    { label: "Intelligence Platform", href: routes.osintAi },
-    { label: "Resources", href: routes.osintAi },
+    { label: "Intelligence Platform", href: routes.reconIntel },
+    { label: "Resources", href: routes.reconIntel },
     { label: "About Us", href: routes.aboutUs },
   ],
-  "red-teaming": [
+  "offensive-operations": [
     { label: "Home", href: routes.home },
     {
       label: "Services",
-      href: routes.redTeaming,
+      href: routes.attackSimulation,
       hasDropdown: true,
       children: servicesMenuChildren,
     },
@@ -154,17 +169,17 @@ export type HeaderAction =
 
 export const headerActions: Partial<Record<HeaderVariant, HeaderAction>> = {
   "cd-x": { type: "search" },
-  "live-simulation": {
+  "technical-simulation-exercise": {
     type: "client-portal",
     label: "Client Portal",
     href: routes.contact,
   },
-  osint: {
+  "reconnaissance-intelligence": {
     type: "contact-sales",
     label: "Contact Sales",
     href: routes.contact,
   },
-  "red-teaming": {
+  "offensive-operations": {
     type: "schedule",
     label: "Schedule Your Assessment",
     href: routes.contact,
@@ -196,13 +211,26 @@ export const footerConfigs: Record<FooterVariant, FooterConfig> = {
     layout: "centered",
     showLogo: true,
   },
-  "cyber-exercise": {
-    variant: "cyber-exercise",
+  "tabletop-exercise": {
+    variant: "tabletop-exercise",
     copyright: "Copyright © 2024 - Simulasi.org, Inc.",
     links: [],
     layout: "three-column",
     leftLinks: [
-      { label: "Services", href: routes.cyberExercise },
+      { label: "Services", href: routes.ittx },
+      { label: "Solutions", href: routes.cdX },
+      { label: "About Us", href: routes.aboutUs },
+      { label: "Contact", href: routes.contact },
+    ],
+    rightLinks: [],
+  },
+  "advance-simulation": {
+    variant: "advance-simulation",
+    copyright: "Copyright © 2024 - Simulasi.org, Inc.",
+    links: [],
+    layout: "three-column",
+    leftLinks: [
+      { label: "Services", href: routes.asx },
       { label: "Solutions", href: routes.cdX },
       { label: "About Us", href: routes.aboutUs },
       { label: "Contact", href: routes.contact },
@@ -216,8 +244,8 @@ export const footerConfigs: Record<FooterVariant, FooterConfig> = {
     layout: "minimal",
     themeCredit: "Inspire Theme by WPZOOM",
   },
-  "live-simulation": {
-    variant: "live-simulation",
+  "technical-simulation-exercise": {
+    variant: "technical-simulation-exercise",
     copyright: "© 2024 Simulasi.org. All Rights Reserved.",
     links: [
       { label: "Privacy Policy", href: routes.privacy },
@@ -227,8 +255,8 @@ export const footerConfigs: Record<FooterVariant, FooterConfig> = {
     layout: "centered",
     showLogo: false,
   },
-  osint: {
-    variant: "osint",
+  "reconnaissance-intelligence": {
+    variant: "reconnaissance-intelligence",
     copyright: "© 2024 Simulasi.org. All rights reserved.",
     links: [
       { label: "Privacy Policy", href: routes.privacy },
@@ -238,15 +266,15 @@ export const footerConfigs: Record<FooterVariant, FooterConfig> = {
     layout: "centered",
     showLogo: false,
   },
-  "red-teaming": {
-    variant: "red-teaming",
+  "offensive-operations": {
+    variant: "offensive-operations",
     copyright: "",
     links: [],
     layout: "three-column",
     showLogo: true,
     leftLinks: [
       { label: "Home", href: routes.home },
-      { label: "Services", href: routes.redTeaming },
+      { label: "Services", href: routes.attackSimulation },
     ],
     rightLinks: [
       { label: "About Us", href: routes.aboutUs },
