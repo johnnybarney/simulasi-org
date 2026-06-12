@@ -2,19 +2,21 @@ import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { GradientText } from "@/components/ui/GradientText";
 
+const iconKnockoutStyle = { mixBlendMode: "screen" as const, filter: "contrast(1.6) brightness(1.3) saturate(1.4)" };
+
 /* ── 1. Hero ─────────────────────────────────────────────────── */
 
 export function OffensiveOperationsHero() {
   return (
     <section className="py-20 md:py-28">
-      <Container className="max-w-2xl">
-        <h1 className="font-headline text-4xl font-bold leading-tight md:text-5xl">
+      <Container className="max-w-3xl text-center">
+        <h1 className="font-headline text-4xl font-bold leading-tight sm:text-5xl lg:text-[3.25rem]">
           <GradientText as="span">Offensive Operations</GradientText>
-          <span className="mt-1 block text-3xl md:text-4xl">
+          <span className="mt-1 block text-4xl sm:text-5xl lg:text-[3.25rem]">
             <GradientText as="span">( Attack Simulation )</GradientText>
           </span>
         </h1>
-        <p className="mt-6 text-lg text-white/90">
+        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/90 md:text-lg">
           Simulate real-world adversaries to uncover hidden vulnerabilities and
           fortify your defenses against sophisticated threats.
         </p>
@@ -43,16 +45,17 @@ export function OffensiveOperationsMethodologySection() {
         <ol className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
           {steps.map((step) => (
             <li key={step.title} className="flex flex-col items-center text-center">
-              <div className="relative mb-4 h-16 w-16 shrink-0">
+              <div className="relative mb-4 h-16 w-16 shrink-0 rounded-lg bg-black">
                 <Image
                   src={step.iconSrc}
                   alt={step.title}
                   fill
                   sizes="64px"
                   className="object-contain"
+                  style={iconKnockoutStyle}
                 />
               </div>
-              <h3 className="font-headline font-bold text-white">{step.title}</h3>
+              <h3 className="font-headline text-lg font-bold text-white md:text-xl">{step.title}</h3>
             </li>
           ))}
         </ol>
@@ -81,13 +84,14 @@ export function OffensiveOperationsBenefitsSection() {
         <ul className="grid gap-8 sm:grid-cols-2">
           {items.map((item) => (
             <li key={item.title} className="flex gap-4">
-              <div className="relative h-14 w-14 shrink-0">
+              <div className="relative h-14 w-14 shrink-0 rounded-lg bg-black">
                 <Image
                   src={item.iconSrc}
                   alt={item.title}
                   fill
                   sizes="56px"
                   className="object-contain"
+                  style={iconKnockoutStyle}
                 />
               </div>
               <div>

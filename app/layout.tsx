@@ -22,9 +22,12 @@ const barlow = Barlow({
 });
 
 export const metadata: Metadata = {
-  title: "Simulasi.org | Cyber Resilience & Simulation Platform",
+  title: "Simulasi",
   description:
     "Transform your cyber readiness from theoretical planning to measurable capability with our advanced resilience platform.",
+  icons: {
+    icon: "/images/rpmylogo2.jpg",
+  },
 };
 
 export default function RootLayout({

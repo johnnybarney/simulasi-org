@@ -16,8 +16,8 @@ export default function AttackSimulationPage() {
     >
       <OffensiveOperationsHero />
       <OffensiveOperationsMethodologySection />
-      <OffensiveOperationsBenefitsSection />
       <OffensiveOperationsComparisonSection />
+      <OffensiveOperationsBenefitsSection />
     </PageShell>
   );
 }

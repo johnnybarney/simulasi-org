@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/layout/Container";
 import { GradientBorder } from "@/components/ui/GradientBorder";
+import { GradientText } from "@/components/ui/GradientText";
 import { cn } from "@/lib/cn";
 import { routes } from "@/lib/navigation";
 
@@ -50,26 +51,29 @@ function SectionVideo({
   );
 }
 
+const iconKnockoutStyle = { mixBlendMode: "screen" as const, filter: "contrast(1.6) brightness(1.3) saturate(1.4)" };
+
 function SectionIcon({
   src,
   alt,
   className,
-  knockoutBlack,
+  noBg,
 }: {
   src?: string;
   alt: string;
   className?: string;
-  knockoutBlack?: boolean;
+  noBg?: boolean;
 }) {
   return (
-    <div className={cn("relative mx-auto h-16 w-16 shrink-0", className)}>
+    <div className={cn("relative mx-auto h-16 w-16 shrink-0", !noBg && "rounded-lg bg-black", className)}>
       {src ? (
         <Image
           src={src}
           alt={alt}
           fill
           sizes="64px"
-          className={cn("object-contain", knockoutBlack && "mix-blend-screen")}
+          className="object-contain"
+          style={iconKnockoutStyle}
         />
       ) : (
         <span className="block h-full w-full bg-cyan-neon/10" aria-hidden="true" />
@@ -140,8 +144,11 @@ export function ReconnaissanceIntelligenceHero() {
         }}
       />
       <Container className="relative text-center">
-        <h1 className="font-headline text-4xl font-bold text-cyan-neon drop-shadow-[0_0_20px_rgba(0,229,255,0.5)] md:text-5xl">
-          Reconnaissance Intelligence ( Recon Intel )
+        <h1 className="font-headline text-4xl font-bold sm:text-5xl lg:text-[3.25rem]">
+          <GradientText as="span">Reconnaissance Intelligence</GradientText>
+          <span className="mt-2 block text-4xl sm:text-5xl lg:text-[3.25rem]">
+            <GradientText as="span">( Recon Intel )</GradientText>
+          </span>
         </h1>
         <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-white/90 md:text-lg">
           Transform raw data into actionable military and cyber intelligence. Accelerate
@@ -302,10 +309,10 @@ export function ReconnaissanceIntelligenceVulnerabilitySection() {
           {cards.map((card) => (
             <li
               key={card.title}
-              className="rounded-lg border-gradient-cyan-magenta bg-cyber-bg p-6"
+              className="rounded-lg border-gradient-cyan-magenta bg-cyber-bg p-6 text-center"
             >
-              <SectionIcon src={card.iconSrc} alt={card.title} className="mb-4" />
-              <h3 className="mb-3 font-headline text-lg font-bold text-white">{card.title}</h3>
+              <SectionIcon src={card.iconSrc} alt={card.title} className="mb-4 h-24 w-24" />
+              <h3 className="mb-3 font-headline text-lg font-bold text-cyan-neon">{card.title}</h3>
               <p className="text-sm leading-relaxed text-white/80">{card.description}</p>
             </li>
           ))}
@@ -367,9 +374,9 @@ export function ReconnaissanceIntelligenceForensicsSection() {
                 src={item.iconSrc}
                 alt={item.title}
                 className="mb-4"
-                knockoutBlack={item.title === "Deep/Dark Web Analysis"}
+                noBg
               />
-              <h3 className="mb-3 font-headline text-lg font-bold text-white">{item.title}</h3>
+              <h3 className="mb-3 font-headline text-lg font-bold text-cyan-neon">{item.title}</h3>
               <p className="text-sm leading-relaxed text-white/80">{item.description}</p>
             </li>
           ))}
@@ -379,7 +386,7 @@ export function ReconnaissanceIntelligenceForensicsSection() {
   );
 }
 
-/* ── 5. Why Choose Simulasi.org for OSINT & AIT ─────────── */
+/* ── 5. Why Choose Simulasi for Reconnaissance Intelligence ─────────── */
 
 export function ReconnaissanceIntelligenceWhyChooseSection() {
   const items = [
@@ -407,13 +414,13 @@ export function ReconnaissanceIntelligenceWhyChooseSection() {
     <section className="py-16 md:py-20">
       <Container>
         <h2 className="mb-12 text-center font-headline text-2xl font-bold text-white md:text-3xl">
-          Why Choose Simulasi.org for OSINT &amp; AIT
+          Why Choose Simulasi for Reconnaissance Intelligence ( Recon Intel )
         </h2>
         <ul className="grid gap-10 md:grid-cols-3">
           {items.map((item) => (
             <li key={item.title} className="text-center">
               <SectionIcon src={item.iconSrc} alt={item.title} className="mb-4" />
-              <h3 className="mb-3 font-headline text-lg font-bold text-white">{item.title}</h3>
+              <h3 className="mb-3 font-headline text-lg font-bold text-cyan-neon">{item.title}</h3>
               <p className="text-sm leading-relaxed text-white/80">{item.description}</p>
             </li>
           ))}

@@ -45,6 +45,8 @@ function MediaVideo({
   );
 }
 
+const iconKnockoutStyle = { mixBlendMode: "screen" as const, filter: "contrast(1.6) brightness(1.3) saturate(1.4)" };
+
 function SectionIcon({
   src,
   alt,
@@ -55,8 +57,8 @@ function SectionIcon({
   className?: string;
 }) {
   return (
-    <div className={cn("relative mx-auto h-16 w-16 shrink-0", className)}>
-      <Image src={src} alt={alt} fill sizes="64px" className="object-contain" />
+    <div className={cn("relative mx-auto h-16 w-16 shrink-0 rounded-lg bg-black", className)}>
+      <Image src={src} alt={alt} fill sizes="64px" className="object-contain" style={iconKnockoutStyle} />
     </div>
   );
 }
@@ -78,13 +80,13 @@ export function TechnicalSimulationExerciseHero() {
     <section className="py-12 md:py-16">
       <Container>
         <div className="px-6 py-12 text-center md:px-12 md:py-16">
-          <h1 className="font-headline text-4xl font-bold md:text-5xl">
+          <h1 className="font-headline text-4xl font-bold sm:text-5xl lg:text-[3.25rem]">
             <GradientText as="span">Technical Simulation Exercise</GradientText>
           </h1>
-          <p className="mt-3 font-headline text-4xl font-bold md:text-5xl">
+          <p className="mt-3 font-headline text-4xl font-bold sm:text-5xl lg:text-[3.25rem]">
             <GradientText as="span">( TSX )</GradientText>
           </p>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-white/90">
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/90 md:text-lg">
             Attack Simulation Against Your Defenses with Real-World Custom-Crafted Technic, Tactics and Procedures
           </p>
         </div>
@@ -195,7 +197,7 @@ export function TechnicalSimulationExerciseBenefitsSection() {
   return (
     <section className="py-16 md:py-20">
       <Container>
-        <h2 className="mb-12 text-center font-headline text-2xl font-bold text-cyan-neon md:text-3xl">
+        <h2 className="mb-12 text-center font-headline text-2xl font-bold text-white md:text-3xl">
           Key Benefits of Live Simulation
         </h2>
         <ul className="grid gap-10 md:grid-cols-3">
@@ -205,12 +207,9 @@ export function TechnicalSimulationExerciseBenefitsSection() {
               <h3 className="mb-4 text-center font-headline text-base font-bold text-white md:text-lg">
                 {item.title}
               </h3>
-              <ul className="space-y-2 text-sm text-white/90">
+              <ul className="space-y-2 text-center text-sm text-white/90">
                 {item.points.map((point) => (
-                  <li key={point} className="flex gap-2">
-                    <span className="mt-1 shrink-0 text-cyan-neon">•</span>
-                    <span>{point}</span>
-                  </li>
+                  <li key={point}>{point}</li>
                 ))}
               </ul>
             </li>

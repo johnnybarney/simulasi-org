@@ -22,7 +22,7 @@ export const cyberExerciseSharedContent = {
   heroDescription:
     "Transform theoretical knowledge into hands-on readiness through immersive simulations and exercises designed to test your organisation's resilience against modern cyber threats.",
   heroVideo: {
-    src: "/images/tabletopmove.mp4",
+    src: "/images/tabledulu.mp4",
     alt: "Interactive Tabletop Exercise simulation",
   },
   offerings: [
@@ -47,16 +47,10 @@ export const cyberExerciseSharedContent = {
       title: "MNI-X 3D Kit",
       blocks: [
         {
-          label: "SOC",
-          text: "Hands-on SOC playbook validation against real-world attack vectors and coordinated response workflows.",
-          iconSrc: "/images/soc.jpg",
-          iconAlt: "SOC",
-        },
-        {
-          label: "IT Response",
-          text: "Improve MTTD and MTTR through controlled technical drills aligned to your environment and tooling.",
-          iconSrc: "/images/it-response.jpg",
-          iconAlt: "IT Response",
+          label: "Tactical Sand Table",
+          text: "Premier standard for physical cyber warfare visualization with 3D miniature models replicate real environment and real world attack vectors.",
+          iconSrc: "/images/mni.jpg",
+          iconAlt: "Tactical Sand Table",
         },
       ],
     },
@@ -112,7 +106,7 @@ export const cyberExerciseSharedContent = {
 export const asxContent = {
   tagline: "Detect. Respond. Recover.",
   heroVideo: {
-    src: "/images/advance.mp4",
+    src: "/images/stadium.mp4",
     alt: "Advance Simulation Exercise simulation",
   },
   offerings: cyberExerciseSharedContent.offerings.map((offering) =>

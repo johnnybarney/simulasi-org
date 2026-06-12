@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/layout/Container";
+
+const iconKnockoutStyle = { mixBlendMode: "screen" as const, filter: "contrast(1.6) brightness(1.3) saturate(1.4)" };
 import { GradientBorder } from "@/components/ui/GradientBorder";
 import { GradientText } from "@/components/ui/GradientText";
 import { cn } from "@/lib/cn";
@@ -15,13 +16,14 @@ function AsxOfferingBlockRow({ block }: { block: CyberOfferingBlock }) {
   return (
     <li className="flex gap-4 rounded-lg border-gradient-cyan-magenta bg-cyber-bg p-4 md:gap-5 md:p-5">
       {block.iconSrc && (
-        <div className="relative h-16 w-16 shrink-0 md:h-20 md:w-20">
+        <div className="relative h-16 w-16 shrink-0 rounded-lg bg-black md:h-20 md:w-20">
           <Image
             src={block.iconSrc}
             alt={block.iconAlt ?? block.label}
             fill
             sizes="80px"
             className="object-contain"
+            style={iconKnockoutStyle}
           />
         </div>
       )}
@@ -70,17 +72,11 @@ export function AsxHero() {
   return (
     <section className="py-12 md:py-16">
       <Container>
-        <Breadcrumb
-          items={[
-            { label: "Advance Simulation Exercise ( ASX )", href: routes.asx },
-            { label: "Overview" },
-          ]}
-        />
         <div className="px-6 py-12 text-center md:px-12 md:py-16">
-          <h1 className="font-headline text-4xl font-bold md:text-5xl">
+          <h1 className="font-headline text-4xl font-bold sm:text-5xl lg:text-[3.25rem]">
             <GradientText as="span">Advance Simulation Exercise</GradientText>
           </h1>
-          <p className="mt-3 font-headline text-4xl font-bold md:text-5xl">
+          <p className="mt-3 font-headline text-4xl font-bold sm:text-5xl lg:text-[3.25rem]">
             <GradientText as="span">( ASX )</GradientText>
           </p>
           <p className="mt-4 font-headline text-xl font-bold text-white md:text-xl">{tagline}</p>
@@ -149,17 +145,18 @@ export function AsxWhyChooseSection() {
               key={item.title}
               className="flex gap-5 rounded-lg border-gradient-cyan-magenta bg-cyber-bg p-6"
             >
-              <div className="relative h-16 w-16 shrink-0">
+              <div className="relative h-16 w-16 shrink-0 rounded-lg bg-black">
                 <Image
                   src={item.iconSrc}
                   alt={item.iconAlt}
                   fill
                   sizes="64px"
                   className="object-contain"
+                  style={iconKnockoutStyle}
                 />
               </div>
               <div className="min-w-0 text-left">
-                <h3 className="font-headline text-base font-bold text-white md:text-lg">
+                <h3 className="font-headline text-base font-bold text-cyan-neon md:text-lg">
                   {item.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/80">{item.description}</p>

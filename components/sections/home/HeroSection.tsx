@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/layout/Container";
+import { GradientText } from "@/components/ui/GradientText";
 import { routes } from "@/lib/navigation";
 import { homeContent } from "@/lib/constants/home";
 
@@ -35,9 +36,9 @@ export function HeroSection() {
         <div className="flex flex-col justify-center lg:py-2">
           <h1
             id="hero-heading"
-            className="font-headline text-4xl font-bold leading-[1.1] text-white sm:text-5xl lg:text-[3.25rem]"
+            className="font-headline text-4xl font-bold leading-[1.1] sm:text-5xl lg:text-[3.25rem]"
           >
-            {hero.title}
+            <GradientText as="span">{hero.title}</GradientText>
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-white/90 md:text-lg">
             {hero.subtitle}

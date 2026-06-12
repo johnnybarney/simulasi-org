@@ -63,6 +63,13 @@ export const homeContent = {
         strategicValue: "Enhanced Team Competency",
         iconSrc: "/images/icons/technical-cyber-drills.jpg",
       },
+      {
+        title: "CAPACITY BUILDING",
+        description:
+          "Strategic training programs and skills development for your team's capabilities.",
+        strategicValue: "Empowered Execution",
+        iconSrc: "/images/capacitybuilding.jpg",
+      },
     ] satisfies ServicePillarItem[],
   },
   whyChoose: {
@@ -115,6 +122,6 @@ export const homeContent = {
     ],
   },
   footer: {
-    copyright: "Copyright © 2024 Simulasi.org | Cyber Resilience & Simulation Platform",
+    copyright: "Copyright © 2026 Simulasi",
   },
 } as const;

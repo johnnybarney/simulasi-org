@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ServiceIcon } from "@/components/icons/ServiceIcon";
 import { Section } from "@/components/layout/Section";
 import { Card } from "@/components/ui/Card";
-import { cn } from "@/lib/cn";
 import { homeContent } from "@/lib/constants/home";
 import { routes } from "@/lib/navigation";
 
@@ -12,6 +11,7 @@ const pillarRoutes = [
   routes.attackSimulation,
   routes.ittx,
   routes.asx,
+  routes.training,
 ];
 
 export function ServicePillarsSection() {
@@ -24,23 +24,31 @@ export function ServicePillarsSection() {
       </h2>
       <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-6">
         {servicePillars.items.map((item, index) => (
-          <li key={item.title} className={cn("lg:col-span-2", index === 3 && "lg:col-start-2")}>
-            <Link href={pillarRoutes[index]} className="block h-full transition-opacity hover:opacity-90">
-              <Card innerClassName="flex h-full flex-col">
+          <li key={item.title} className="lg:col-span-2">
+            <Link href={pillarRoutes[index]} className="flex h-full flex-col transition-opacity hover:opacity-90">
+              <Card className="flex-1" innerClassName="flex flex-col">
                 <div className="flex flex-1 flex-col px-6 pb-5 pt-7">
-                  <div className="mb-5 flex justify-center">
+                  {/* Fixed-height icon zone — same across all cards */}
+                  <div className="mb-5 flex h-24 shrink-0 items-center justify-center">
                     <ServiceIcon
                       index={index}
                       iconSrc={item.iconSrc}
                       alt={item.title}
+                      large
+                      knockoutBlack={index === 0 || index === 4}
                     />
                   </div>
-                  <h3 className="mb-3 text-center font-headline text-lg font-bold leading-snug text-white">
-                    <span className="block">{item.title}</span>
+                  {/* Fixed-height title zone — same across all cards */}
+                  <div className="mb-3 flex h-28 shrink-0 flex-col items-center justify-start overflow-hidden">
+                    <span className="block text-center font-headline text-lg font-bold leading-snug text-white">
+                      {item.title}
+                    </span>
                     {item.titleCode && (
-                      <span className="mt-1 block text-base text-cyan-neon">( {item.titleCode} )</span>
+                      <span className="mt-1 block text-center text-base font-bold text-cyan-neon">
+                        ( {item.titleCode} )
+                      </span>
                     )}
-                  </h3>
+                  </div>
                   <p className="flex-1 text-center text-sm leading-relaxed text-white/90">{item.description}</p>
                 </div>
                 <div className="bg-card-footer px-4 py-3 text-center text-xs">

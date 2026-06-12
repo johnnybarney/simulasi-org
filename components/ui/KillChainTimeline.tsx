@@ -477,19 +477,28 @@ export function KillChainTimeline() {
         <div className="mb-8 text-center">
           <p
             className="mb-2 font-mono text-[10px] font-bold uppercase tracking-[0.4em] md:text-xs"
-            style={{ color: C, textShadow: `0 0 12px ${C}` }}
+            style={{
+              color: PK,
+              textShadow: `0 0 8px ${PK}, 0 0 20px ${PU}`,
+            }}
           >
             Threat Intelligence
           </p>
           <h2
             className="font-headline text-2xl font-bold md:text-3xl"
-            style={{ color: "#ffffff", textShadow: "0 0 20px rgba(0,255,204,0.35)" }}
+            style={{
+              background: `linear-gradient(to right, ${C}, #00bfff, ${PU}, ${PK})`,
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              filter: `drop-shadow(0 0 12px ${C})`,
+            }}
           >
             Simulation Phases
           </h2>
           <div
-            className="mx-auto mt-3 h-px w-32"
-            style={{ background: `linear-gradient(to right, transparent, ${C}, transparent)` }}
+            className="mx-auto mt-3 h-px w-48"
+            style={{ background: `linear-gradient(to right, transparent, ${C}, ${PU}, ${PK}, transparent)` }}
           />
         </div>
 
