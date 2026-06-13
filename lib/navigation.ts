@@ -21,6 +21,7 @@ export type HeaderVariant =
   | "tabletop-exercise"
   | "advance-simulation"
   | "cd-x"
+  | "mni-x"
   | "technical-simulation-exercise"
   | "reconnaissance-intelligence"
   | "offensive-operations";
@@ -30,6 +31,7 @@ export type FooterVariant =
   | "tabletop-exercise"
   | "advance-simulation"
   | "cd-x"
+  | "mni-x"
   | "technical-simulation-exercise"
   | "reconnaissance-intelligence"
   | "offensive-operations";
@@ -91,6 +93,7 @@ export const headerConfigs: Record<HeaderVariant, NavItem[]> = {
   "technical-simulation-exercise": homeNavItems,
   "reconnaissance-intelligence": homeNavItems,
   "offensive-operations": homeNavItems,
+  "mni-x": homeNavItems,
 };
 
 export type HeaderAction =
@@ -158,6 +161,13 @@ export const footerConfigs: Record<FooterVariant, FooterConfig> = {
   },
   "offensive-operations": {
     variant: "offensive-operations",
+    copyright: sharedCopyright,
+    links: [],
+    layout: "centered",
+    showLogo: false,
+  },
+  "mni-x": {
+    variant: "mni-x",
     copyright: sharedCopyright,
     links: [],
     layout: "centered",

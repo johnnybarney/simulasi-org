@@ -5,8 +5,11 @@ import { motion } from "motion/react";
 
 // ─── colour tokens ────────────────────────────────────────────
 const C = "#00ffcc";      // cyan neon
+const BL = "#00aaff";     // blue neon
 const PU = "#a020f0";     // purple
 const PK = "#ff2d7c";     // pink
+const RE = "#ff2200";     // red neon
+const WH = "#e8f4ff";     // white neon
 const BG = "#020d14";
 
 // ─── shared framer-motion transition helpers ──────────────────
@@ -111,12 +114,19 @@ function Defs() {
     <defs>
       {glow("gc", C, 3)}
       {glow("gcs", C, 7)}
+      {glow("gbl", BL, 4)}
       {glow("gp", PU, 4)}
       {glow("gpk", PK, 4)}
+      {glow("gre", RE, 4)}
+      {glow("gwh", WH, 4)}
 
       <linearGradient id="lgcc" x1="0%" y1="0%" x2="100%" y2="0%">
         <stop offset="0%" stopColor={C} />
         <stop offset="100%" stopColor={C} />
+      </linearGradient>
+      <linearGradient id="lgbb" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stopColor={BL} />
+        <stop offset="100%" stopColor={BL} />
       </linearGradient>
       <linearGradient id="lgcp" x1="0%" y1="0%" x2="100%" y2="0%">
         <stop offset="0%" stopColor={C} />
@@ -125,14 +135,18 @@ function Defs() {
 
       <radialGradient id="flame" cx="50%" cy="15%" r="65%">
         <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
-        <stop offset="20%" stopColor={C} stopOpacity="0.95" />
-        <stop offset="70%" stopColor={C} stopOpacity="0.25" />
-        <stop offset="100%" stopColor={C} stopOpacity="0" />
+        <stop offset="20%" stopColor={PK} stopOpacity="0.95" />
+        <stop offset="70%" stopColor={PK} stopOpacity="0.25" />
+        <stop offset="100%" stopColor={PK} stopOpacity="0" />
       </radialGradient>
 
       <radialGradient id="nodec" cx="50%" cy="50%" r="50%">
         <stop offset="0%" stopColor={C} stopOpacity="0.35" />
         <stop offset="100%" stopColor={C} stopOpacity="0" />
+      </radialGradient>
+      <radialGradient id="nodebl" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stopColor={BL} stopOpacity="0.35" />
+        <stop offset="100%" stopColor={BL} stopOpacity="0" />
       </radialGradient>
       <radialGradient id="nodep" cx="50%" cy="50%" r="50%">
         <stop offset="0%" stopColor={PU} stopOpacity="0.35" />
@@ -159,7 +173,7 @@ function Node({ cx, cy, c = C, fill = "nodec" }: { cx: number; cy: number; c?: s
 // ─── Horizontal connection line + arrowhead ───────────────────
 function Connector({ x1, x2, y, grad, last = false }: { x1: number; x2: number; y: number; grad: string; last?: boolean }) {
   const ax = x2 - 1;
-  const tip = last ? PU : C;
+  const tip = last ? PU : BL;
   return (
     <g>
       <line x1={x1} y1={y} x2={ax - 8} y2={y} stroke={`url(#${grad})`} strokeWidth={2} strokeOpacity={0.85} filter="url(#gc)" />
@@ -207,32 +221,32 @@ function DeliveryStage({ cx, cy }: { cx: number; cy: number }) {
         animate={{ scaleY: [1, 1.35, 0.75, 1.2, 1], opacity: [0.9, 1, 0.65, 1, 0.9] }}
         transition={{ ...inf, duration: 0.35, ease: "easeInOut" }}>
         <ellipse cx={rx} cy={ry + 55} rx={11} ry={18} fill="url(#flame)" />
-        <ellipse cx={rx} cy={ry + 62} rx={6} ry={10} fill={C} fillOpacity={0.45} />
+        <ellipse cx={rx} cy={ry + 62} rx={6} ry={10} fill={PK} fillOpacity={0.45} />
         <ellipse cx={rx} cy={ry + 67} rx={3} ry={5.5} fill="#fff" fillOpacity={0.65} />
       </motion.g>
       {/* Left fin */}
       <polygon points={`${rx - 13},${ry + 30} ${rx - 24},${ry + 46} ${rx - 13},${ry + 40}`}
-        fill="none" stroke={C} strokeWidth={1.5} filter="url(#gc)" />
+        fill="none" stroke={BL} strokeWidth={1.5} filter="url(#gbl)" />
       {/* Right fin */}
       <polygon points={`${rx + 13},${ry + 30} ${rx + 24},${ry + 46} ${rx + 13},${ry + 40}`}
-        fill="none" stroke={C} strokeWidth={1.5} filter="url(#gc)" />
+        fill="none" stroke={BL} strokeWidth={1.5} filter="url(#gbl)" />
       {/* Body */}
       <rect x={rx - 13} y={ry} width={26} height={42} rx={4}
-        fill="rgba(0,255,204,0.06)" stroke={C} strokeWidth={2} filter="url(#gc)" />
+        fill="rgba(0,170,255,0.06)" stroke={BL} strokeWidth={2} filter="url(#gbl)" />
       {/* Porthole */}
-      <circle cx={rx} cy={ry + 18} r={7} fill="none" stroke={C} strokeWidth={1.5} filter="url(#gc)" />
-      <motion.circle cx={rx} cy={ry + 18} r={3.5} fill={C} fillOpacity={0.55}
+      <circle cx={rx} cy={ry + 18} r={7} fill="none" stroke={BL} strokeWidth={1.5} filter="url(#gbl)" />
+      <motion.circle cx={rx} cy={ry + 18} r={3.5} fill={BL} fillOpacity={0.55}
         animate={{ r: [3.5, 5, 3.5], fillOpacity: [0.55, 0.9, 0.55] }}
         transition={loop(1.9)} />
       {/* Nose */}
       <polygon points={`${rx},${ry - 24} ${rx - 13},${ry} ${rx + 13},${ry}`}
-        fill="rgba(0,255,204,0.08)" stroke={C} strokeWidth={2} filter="url(#gc)" />
+        fill="rgba(0,170,255,0.08)" stroke={BL} strokeWidth={2} filter="url(#gbl)" />
       {/* Speed lines */}
       {[0, 1, 2].map(i => (
         <motion.line key={i}
           x1={rx - 20} y1={ry + 8 + i * 9}
           x2={rx - 32} y2={ry + 8 + i * 9}
-          stroke={C} strokeWidth={1.5}
+          stroke={BL} strokeWidth={1.5}
           animate={{ strokeOpacity: [0, 0.7, 0], x1: [rx - 20, rx - 24, rx - 20] }}
           transition={{ ...inf, duration: 0.9, delay: i * 0.22 }} />
       ))}
@@ -251,40 +265,40 @@ function ExecutionStage({ cx, cy }: { cx: number; cy: number }) {
     <g>
       {/* Monitor frame */}
       <rect x={mx - mw / 2} y={my} width={mw} height={mh} rx={5}
-        fill="rgba(0,255,204,0.04)" stroke={C} strokeWidth={2} filter="url(#gc)" />
+        fill="rgba(0,170,255,0.04)" stroke={BL} strokeWidth={2} filter="url(#gbl)" />
       {/* Screen */}
       <rect x={mx - mw / 2 + 5} y={my + 5} width={mw - 10} height={mh - 15} rx={2}
-        fill="rgba(0,255,204,0.06)" />
+        fill="rgba(0,170,255,0.06)" />
       {/* Stand */}
-      <line x1={mx} y1={my + mh} x2={mx} y2={hubY - 8} stroke={C} strokeWidth={2} strokeOpacity={0.5} />
-      <line x1={mx - 14} y1={my + mh + 7} x2={mx + 14} y2={my + mh + 7} stroke={C} strokeWidth={2} strokeOpacity={0.5} />
+      <line x1={mx} y1={my + mh} x2={mx} y2={hubY - 8} stroke={BL} strokeWidth={2} strokeOpacity={0.5} />
+      <line x1={mx - 14} y1={my + mh + 7} x2={mx + 14} y2={my + mh + 7} stroke={BL} strokeWidth={2} strokeOpacity={0.5} />
 
-      {/* Code lines */}
+      {/* Code lines — purple */}
       {[0, 10, 20].map((dy, i) => (
         <motion.rect key={i}
           x={mx - mw / 2 + 8} y={my + 12 + dy}
           width={0} height={4} rx={1}
-          fill={C} fillOpacity={0.65}
+          fill={PU} fillOpacity={0.75}
           animate={{ width: [0, [38, 24, 46][i], 0] }}
           transition={{ ...inf, duration: 2.4, delay: i * 0.55, ease: "easeInOut" }} />
       ))}
-      {/* Cursor */}
-      <motion.rect x={mx - mw / 2 + 8} y={my + 36} width={9} height={5} rx={1} fill={C}
+      {/* Cursor — pink */}
+      <motion.rect x={mx - mw / 2 + 8} y={my + 36} width={9} height={5} rx={1} fill={PK}
         animate={{ fillOpacity: [1, 0, 1] }} transition={{ ...inf, duration: 0.75 }} />
 
-      {/* C2 hub + spokes */}
-      <circle cx={mx} cy={hubY} r={5} fill={C} fillOpacity={0.75} filter="url(#gc)" />
+      {/* C2 hub + spokes — white neon */}
+      <circle cx={mx} cy={hubY} r={5} fill={WH} fillOpacity={0.75} filter="url(#gwh)" />
       {spokeAngles.map((angle, i) => {
         const nx = mx + Math.cos(angle) * 30;
         const ny = hubY + Math.sin(angle) * 26;
         return (
           <g key={i}>
             <motion.line x1={mx} y1={hubY} x2={nx} y2={ny}
-              stroke={C} strokeWidth={1} strokeDasharray="3 3"
+              stroke={WH} strokeWidth={1} strokeDasharray="3 3"
               animate={{ strokeOpacity: [0.3, 0.85, 0.3] }}
               transition={loop(1.6, i * 0.4)} />
             <motion.circle cx={nx} cy={ny} r={4.5}
-              fill="none" stroke={C} strokeWidth={1.5} filter="url(#gc)"
+              fill="none" stroke={WH} strokeWidth={1.5} filter="url(#gwh)"
               animate={{ r: [4.5, 6, 4.5] }}
               transition={loop(1.6, i * 0.4)} />
           </g>
@@ -308,43 +322,43 @@ function LateralStage({ cx, cy }: { cx: number; cy: number }) {
     <g>
       {/* Scanning ring */}
       <motion.circle cx={hx} cy={hy} r={55}
-        fill="none" stroke={C} strokeWidth={1} strokeOpacity={0.25} strokeDasharray="5 9"
+        fill="none" stroke={BL} strokeWidth={1} strokeOpacity={0.25} strokeDasharray="5 9"
         animate={{ rotate: 360 }} transition={{ ...inf, duration: 6, ease: "linear" }}
         style={{ transformBox: "fill-box", transformOrigin: "center" }} />
 
-      {/* Skip-one cross-links */}
+      {/* Skip-one cross-links — purple */}
       {pts.map((p, i) => {
         const q = pts[(i + 2) % n];
         return (
           <motion.line key={`xl-${i}`} x1={p.x} y1={p.y} x2={q.x} y2={q.y}
-            stroke={C} strokeWidth={0.8} strokeDasharray="3 5"
+            stroke={PU} strokeWidth={0.8} strokeDasharray="3 5"
             animate={{ strokeOpacity: [0.1, 0.45, 0.1] }}
             transition={loop(2.8, i * 0.35)} />
         );
       })}
 
-      {/* Spokes */}
+      {/* Spokes — blue */}
       {pts.map((p, i) => (
         <motion.line key={`sp-${i}`} x1={hx} y1={hy} x2={p.x} y2={p.y}
-          stroke={C} strokeWidth={1.2} strokeOpacity={0.5}
+          stroke={BL} strokeWidth={1.2} strokeOpacity={0.5}
           animate={{ strokeOpacity: [0.25, 0.85, 0.25] }}
           transition={loop(2, i * 0.25)} />
       ))}
 
-      {/* Satellite nodes */}
+      {/* Satellite nodes — blue */}
       {pts.map((p, i) => (
         <motion.circle key={`nd-${i}`} cx={p.x} cy={p.y} r={5}
-          fill="none" stroke={C} strokeWidth={1.5} filter="url(#gc)"
+          fill="none" stroke={BL} strokeWidth={1.5} filter="url(#gbl)"
           animate={{ r: [5, 6.8, 5] }}
           transition={loop(2, i * 0.25)} />
       ))}
 
-      {/* Hub */}
+      {/* Hub — blue */}
       <circle cx={hx} cy={hy} r={15}
-        fill="rgba(0,255,204,0.08)" stroke={C} strokeWidth={2} filter="url(#gc)" />
-      {/* Warning ! */}
+        fill="rgba(0,170,255,0.08)" stroke={BL} strokeWidth={2} filter="url(#gbl)" />
+      {/* Warning ! — red */}
       <motion.text x={hx} y={hy + 6} textAnchor="middle" fontSize={15}
-        fontWeight="bold" fill={C} filter="url(#gcs)"
+        fontWeight="bold" fill={RE} filter="url(#gre)"
         animate={{ fillOpacity: [1, 0.4, 1] }} transition={loop(1.2)}>
         !
       </motion.text>
@@ -441,8 +455,8 @@ export function KillChainTimeline() {
   const stages = [140, 420, 720, 1010] as const;
 
   const connectors: { x1: number; x2: number; grad: string; last?: boolean }[] = [
-    { x1: 162, x2: 398, grad: "lgcc" },
-    { x1: 442, x2: 698, grad: "lgcc" },
+    { x1: 162, x2: 398, grad: "lgbb" },
+    { x1: 442, x2: 698, grad: "lgbb" },
     { x1: 742, x2: 995, grad: "lgcp", last: true },
   ];
 
@@ -477,28 +491,19 @@ export function KillChainTimeline() {
         <div className="mb-8 text-center">
           <p
             className="mb-2 font-mono text-[10px] font-bold uppercase tracking-[0.4em] md:text-xs"
-            style={{
-              color: PK,
-              textShadow: `0 0 8px ${PK}, 0 0 20px ${PU}`,
-            }}
+            style={{ color: PK, textShadow: `0 0 12px ${PK}` }}
           >
             Threat Intelligence
           </p>
           <h2
             className="font-headline text-2xl font-bold md:text-3xl"
-            style={{
-              background: `linear-gradient(to right, ${C}, #00bfff, ${PU}, ${PK})`,
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              filter: `drop-shadow(0 0 12px ${C})`,
-            }}
+            style={{ color: "#ffffff", textShadow: "0 0 20px rgba(0,255,204,0.35)" }}
           >
             Simulation Phases
           </h2>
           <div
             className="mx-auto mt-3 h-px w-48"
-            style={{ background: `linear-gradient(to right, transparent, ${C}, ${PU}, ${PK}, transparent)` }}
+            style={{ background: `linear-gradient(to right, transparent, ${BL}, ${PU}, ${PK}, transparent)` }}
           />
         </div>
 
@@ -524,30 +529,30 @@ export function KillChainTimeline() {
                   key={`p${ci}${pi}`}
                   x1={c.x1 + 12} x2={c.x2 - 14} y={TY}
                   delay={pi * 0.65}
-                  c={ci === 2 ? PU : C}
+                  c={ci === 2 ? PU : BL}
                 />
               ))
             )}
 
             {/* ── Stage 1: DELIVERY ── */}
             <DeliveryStage cx={stages[0]} cy={TY} />
-            <Node cx={stages[0]} cy={TY} />
-            <Label x={stages[0]} y={TY + 40} text="DELIVERY" />
+            <Node cx={stages[0]} cy={TY} c={BL} fill="nodebl" />
+            <Label x={stages[0]} y={TY + 40} text="DELIVERY" c={BL} />
 
             {/* ── Stage 2: EXECUTION & C2 ── */}
             <ExecutionStage cx={stages[1]} cy={TY} />
-            <Node cx={stages[1]} cy={TY} />
-            <Label x={stages[1]} y={TY + 40} text="EXECUTION & C2" />
+            <Node cx={stages[1]} cy={TY} c={BL} fill="nodebl" />
+            <Label x={stages[1]} y={TY + 40} text="EXECUTION & C2" c={BL} />
 
             {/* ── Stage 3: LATERAL MOVEMENT ── */}
             <LateralStage cx={stages[2]} cy={TY} />
-            <Node cx={stages[2]} cy={TY} />
-            <Label x={stages[2]} y={TY + 40} text="LATERAL MOVEMENT" />
+            <Node cx={stages[2]} cy={TY} c={BL} fill="nodebl" />
+            <Label x={stages[2]} y={TY + 40} text="LATERAL MOVEMENT" c={BL} />
 
             {/* ── Stage 4: IMPACT ── */}
             <ImpactStage cx={stages[3]} cy={TY} />
             <Node cx={stages[3]} cy={TY} c={PU} fill="nodep" />
-            <Label x={stages[3]} y={TY + 40} text="IMPACT" c={PU} />
+            <Label x={stages[3]} y={TY + 40} text="IMPACT" c={BL} />
           </svg>
         </div>
       </div>

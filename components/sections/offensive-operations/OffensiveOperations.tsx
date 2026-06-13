@@ -55,7 +55,7 @@ export function OffensiveOperationsMethodologySection() {
                   style={iconKnockoutStyle}
                 />
               </div>
-              <h3 className="font-headline text-lg font-bold text-white md:text-xl">{step.title}</h3>
+              <h3 className="font-headline text-lg font-bold text-cyan-neon md:text-xl">{step.title}</h3>
             </li>
           ))}
         </ol>
@@ -95,7 +95,7 @@ export function OffensiveOperationsBenefitsSection() {
                 />
               </div>
               <div>
-                <h3 className="font-headline font-bold text-white">{item.title}</h3>
+                <h3 className="font-headline font-bold text-cyan-neon">{item.title}</h3>
                 <p className="mt-1 text-sm text-white/80">{item.description}</p>
               </div>
             </li>
