@@ -143,7 +143,8 @@ export const footerConfigs: Record<FooterVariant, FooterConfig> = {
     variant: "cd-x",
     copyright: sharedCopyright,
     links: [],
-    layout: "minimal",
+    layout: "centered",
+    showLogo: false,
   },
   "technical-simulation-exercise": {
     variant: "technical-simulation-exercise",

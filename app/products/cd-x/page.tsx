@@ -1,7 +1,6 @@
 import { PageShell } from "@/components/layout/PageShell";
 import {
   CdXHero,
-  CdXWhyChooseSection,
   CyberDrillsSection,
   PartnersSection,
   ValueDeliveryTable,
@@ -14,7 +13,6 @@ export default function CdXProductPage() {
       <CdXHero />
       <CyberDrillsSection />
       <ValueDeliveryTable />
-      <CdXWhyChooseSection />
       <PartnersSection />
     </PageShell>
   );

@@ -4,8 +4,6 @@ import {
   MniXProblemSection,
   MniXOpportunitySection,
   MniXProductsSection,
-  MniXTargetMarketSection,
-  MniXRevenueSection,
 } from "@/components/sections/mni-x/MniXSections";
 import { routes } from "@/lib/navigation";
 
@@ -22,8 +20,6 @@ export default function MniX3dKitPage() {
       <MniXProblemSection />
       <MniXOpportunitySection />
       <MniXProductsSection />
-      <MniXTargetMarketSection />
-      <MniXRevenueSection />
     </PageShell>
   );
 }

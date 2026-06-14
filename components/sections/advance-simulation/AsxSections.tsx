@@ -27,7 +27,7 @@ function AsxOfferingBlockRow({ block }: { block: CyberOfferingBlock }) {
           />
         </div>
       )}
-      <div className="min-w-0 text-left">
+      <div className="min-w-0 text-center">
         <p className="font-headline text-sm font-bold text-cyan-neon md:text-base">{block.label}</p>
         <p className="mt-1 text-sm leading-relaxed text-white/85">{block.text}</p>
       </div>
@@ -155,7 +155,7 @@ export function AsxWhyChooseSection() {
                   style={iconKnockoutStyle}
                 />
               </div>
-              <div className="min-w-0 text-left">
+              <div className="min-w-0 text-center">
                 <h3 className="font-headline text-base font-bold text-cyan-neon md:text-lg">
                   {item.title}
                 </h3>

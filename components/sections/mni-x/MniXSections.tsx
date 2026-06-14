@@ -87,7 +87,7 @@ export function MniXProblemSection() {
           {painPoints.map((p) => (
             <li
               key={p.label}
-              className="rounded-lg border-gradient-cyan-magenta bg-cyber-bg p-6"
+              className="rounded-lg border-gradient-cyan-magenta bg-cyber-bg p-6 text-center"
             >
               <p className="mb-3 font-headline text-base font-bold text-cyan-neon">
                 {p.label}
@@ -145,19 +145,17 @@ export function MniXOpportunitySection() {
           {useCases.map((item) => (
             <li
               key={item.title}
-              className="flex gap-5 rounded-lg border-gradient-cyan-magenta bg-cyber-bg p-6"
+              className="flex flex-col items-center rounded-lg border-gradient-cyan-magenta bg-cyber-bg p-6 text-center"
             >
-              <span className="shrink-0 text-3xl" aria-hidden="true">
+              <span className="mb-3 shrink-0 text-3xl" aria-hidden="true">
                 {item.icon}
               </span>
-              <div>
-                <h3 className="mb-2 font-headline text-base font-bold text-cyan-neon md:text-lg">
-                  {item.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-white/80">
-                  {item.description}
-                </p>
-              </div>
+              <h3 className="mb-2 font-headline text-base font-bold text-cyan-neon md:text-lg">
+                {item.title}
+              </h3>
+              <p className="text-sm leading-relaxed text-white/80">
+                {item.description}
+              </p>
             </li>
           ))}
         </ul>
@@ -229,109 +227,47 @@ export function MniXProductsSection() {
             Products &amp; Services
           </h2>
         </div>
-        <ul className="grid gap-6 md:grid-cols-2">
+        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {products.map((p) => (
             <li
               key={p.tier}
-              className="gradient-cyan-magenta border-glow-cyan-magenta flex flex-col rounded-lg p-px"
+              className="rounded-lg border-gradient-cyan-magenta bg-cyber-bg p-6 text-center"
             >
-              <div className="flex h-full flex-col rounded-lg bg-cyber-bg p-6">
-                <div className="mb-4 flex items-start justify-between gap-4">
-                  <span className="font-mono text-4xl font-bold leading-none text-white/10">
-                    {p.tier}
-                  </span>
-                  <span className="rounded-full border border-cyan-neon/30 bg-cyan-neon/10 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-cyan-neon">
-                    {p.badge}
-                  </span>
-                </div>
-                <h3 className="mb-1 font-headline text-lg font-bold text-cyan-neon md:text-xl">
-                  {p.title}
-                </h3>
-                <p className="mb-4 font-mono text-[10px] uppercase tracking-widest text-white/50">
-                  {p.tagline}
-                </p>
-                <p className="text-sm leading-relaxed text-white/80">
-                  {p.description}
-                </p>
-                {p.kits && (
-                  <ul className="mt-4 space-y-2">
-                    {p.kits.map((kit) => (
-                      <li
-                        key={kit}
-                        className="flex items-center gap-2 text-sm text-white/80"
-                      >
-                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-neon" />
-                        {kit}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                {p.gem && (
-                  <p className="mt-4 rounded border border-cyan-neon/20 bg-cyan-neon/5 p-3 text-xs italic leading-relaxed text-cyan-neon/80">
-                    ✦ {p.gem}
-                  </p>
-                )}
+              <div className="mb-4 flex items-start justify-between gap-4">
+                <span className="font-mono text-4xl font-bold leading-none" style={{ color: "#a020f0" }}>
+                  {p.tier}
+                </span>
+                <span className="rounded-full border border-cyan-neon/30 bg-cyan-neon/10 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-cyan-neon">
+                  {p.badge}
+                </span>
               </div>
-            </li>
-          ))}
-        </ul>
-      </Container>
-    </section>
-  );
-}
-
-/* ── Target Market ────────────────────────────────────────── */
-export function MniXTargetMarketSection() {
-  const audiences = [
-    {
-      icon: "👔",
-      title: "CISOs & Security Directors",
-      description:
-        "Justify security budgets and explain risk to executive boards with physical, undeniable clarity.",
-    },
-    {
-      icon: "🏢",
-      title: "MSSPs",
-      description:
-        "A powerful sales tool to explain complex managed security services to prospective clients in minutes.",
-    },
-    {
-      icon: "🎓",
-      title: "Cybersecurity Training & Bootcamps",
-      description:
-        "Hands-on teaching aids to explain complex topics and dramatically improve knowledge retention.",
-    },
-    {
-      icon: "📋",
-      title: "IR & GRC Teams",
-      description:
-        "Use in tabletop exercises and to model risk scenarios for Incident Response and Governance, Risk & Compliance.",
-    },
-  ];
-
-  return (
-    <section className="py-16 md:py-20">
-      <Container>
-        <div className="mb-14 text-center">
-          <p className="mb-2 font-mono text-xs font-bold uppercase tracking-widest text-cyan-neon">
-            Who It&apos;s For
-          </p>
-          <h2 className="font-headline text-2xl font-bold text-white md:text-3xl">
-            Target Market
-          </h2>
-        </div>
-        <ul className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          {audiences.map((a) => (
-            <li key={a.title} className="text-center">
-              <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-cyan-neon/20 bg-cyan-neon/5 text-3xl mx-auto">
-                {a.icon}
-              </div>
-              <h3 className="mb-2 font-headline text-base font-bold text-cyan-neon">
-                {a.title}
+              <h3 className="mb-1 font-headline text-lg font-bold text-cyan-neon md:text-xl">
+                {p.title}
               </h3>
+              <p className="mb-4 font-mono text-[10px] uppercase tracking-widest text-white/50">
+                {p.tagline}
+              </p>
               <p className="text-sm leading-relaxed text-white/80">
-                {a.description}
+                {p.description}
               </p>
+              {p.kits && (
+                <ul className="mt-4 space-y-2 text-left">
+                  {p.kits.map((kit) => (
+                    <li
+                      key={kit}
+                      className="flex items-center gap-2 text-sm text-white/80"
+                    >
+                      <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-neon" />
+                      {kit}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {p.gem && (
+                <p className="mt-4 rounded border border-cyan-neon/20 bg-cyan-neon/5 p-3 text-xs italic leading-relaxed text-cyan-neon/80">
+                  ✦ {p.gem}
+                </p>
+              )}
             </li>
           ))}
         </ul>
@@ -340,69 +276,3 @@ export function MniXTargetMarketSection() {
   );
 }
 
-/* ── Revenue Model ────────────────────────────────────────── */
-export function MniXRevenueSection() {
-  const streams = [
-    {
-      label: "Customized Threat Modeling Services",
-      sub: "High-Margin · Project-Based",
-      color: "border-cyan-neon/30 bg-cyan-neon/5 text-cyan-neon",
-    },
-    {
-      label: "Standardized Cyber Kit Products",
-      sub: "Scalable · E-Commerce",
-      color: "border-purple-500/30 bg-purple-500/5 text-purple-400",
-    },
-    {
-      label: "Digital File Sales (.STL)",
-      sub: "Passive · High-Profit",
-      color: "border-pink-500/30 bg-pink-500/5 text-pink-400",
-    },
-    {
-      label: "War Game Workshops",
-      sub: "Service-Based",
-      color: "border-blue-400/30 bg-blue-400/5 text-blue-300",
-    },
-  ];
-
-  return (
-    <section className="relative py-16 md:py-20">
-      <div
-        className="pointer-events-none absolute inset-0 opacity-20"
-        aria-hidden="true"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(90deg, rgba(0,229,255,0.08) 0px, rgba(0,229,255,0.08) 1px, transparent 1px, transparent 64px)",
-        }}
-      />
-      <Container className="relative">
-        <div className="mb-14 text-center">
-          <p className="mb-2 font-mono text-xs font-bold uppercase tracking-widest text-cyan-neon">
-            Business Model
-          </p>
-          <h2 className="font-headline text-2xl font-bold text-white md:text-3xl">
-            Revenue Streams
-          </h2>
-        </div>
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {streams.map((s, i) => (
-            <li
-              key={s.label}
-              className={`rounded-lg border p-6 text-center ${s.color}`}
-            >
-              <span className="mb-3 block font-mono text-3xl font-bold opacity-20">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <p className="font-headline text-sm font-bold md:text-base">
-                {s.label}
-              </p>
-              <p className="mt-2 font-mono text-[10px] uppercase tracking-widest opacity-60">
-                {s.sub}
-              </p>
-            </li>
-          ))}
-        </ul>
-      </Container>
-    </section>
-  );
-}
